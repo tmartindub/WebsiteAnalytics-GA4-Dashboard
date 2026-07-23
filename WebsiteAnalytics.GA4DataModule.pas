@@ -668,8 +668,8 @@ begin
     Exit;
 
   Snapshot.Clear;
-  for ReportKind in [grkWeeklyUsers, grkGeography, grkContent, grkRealtime,
-    grkRealtimeActivity] do
+  for ReportKind in [grkOverview, grkWeeklyUsers, grkGeography, grkContent,
+    grkRealtime, grkRealtimeActivity] do
   begin
     ResponseJson := ExecuteReport(AccessToken, PropertyId, StartDate, EndDate,
       ReportKind);
