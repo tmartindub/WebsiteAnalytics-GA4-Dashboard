@@ -2768,7 +2768,7 @@ object frmMainDashboard: TfrmMainDashboard
                         Size.Width = 120.000000000000000000
                         Size.Height = 48.000000000000000000
                         Size.PlatformDefault = False
-                        TextSettings.Font.Size = 18.000000000000000000
+                        TextSettings.Font.Size = 16.000000000000000000
                         TextSettings.Font.StyleExt = {00070000000000000004000000}
                         TextSettings.FontColor = xFFFFD166
                         Text = '--'
@@ -2802,7 +2802,7 @@ object frmMainDashboard: TfrmMainDashboard
                         Size.Width = 120.000000000000000000
                         Size.Height = 48.000000000000000000
                         Size.PlatformDefault = False
-                        TextSettings.Font.Size = 18.000000000000000000
+                        TextSettings.Font.Size = 16.000000000000000000
                         TextSettings.Font.StyleExt = {00070000000000000004000000}
                         TextSettings.FontColor = xFFFFD166
                         Text = 'None'
