@@ -101,6 +101,7 @@ type
 
   TGA4RealtimeSummary = record
     ActiveUsers: Double;
+    ScreenPageViews: Double;
     LastCountry: string;
     LastCity: string;
     LastMinutesAgo: Integer;

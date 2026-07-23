@@ -399,7 +399,8 @@ begin
         begin
           RequestJson.AddPair('dimensions',
             BuildDimensionArray(['country', 'city', 'minutesAgo']));
-          RequestJson.AddPair('metrics', BuildMetricArray(['activeUsers']));
+          RequestJson.AddPair('metrics',
+            BuildMetricArray(['activeUsers', 'screenPageViews']));
           DimensionOrderBy := TJSONObject.Create;
           DimensionOrderBy.AddPair('dimensionName', 'minutesAgo');
           OrderBy := TJSONObject.Create;
@@ -560,6 +561,8 @@ begin
           end;
         grkRealtimeActivity:
           begin
+            Snapshot.RealtimeSummary.ScreenPageViews :=
+              Snapshot.RealtimeSummary.ScreenPageViews + MetricValue(Row, 1);
             if not Snapshot.RealtimeSummary.HasLastActivity then
             begin
               Snapshot.RealtimeSummary.LastCountry := DimensionValue(Row, 0);

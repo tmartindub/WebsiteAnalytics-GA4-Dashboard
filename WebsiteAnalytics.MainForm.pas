@@ -1744,6 +1744,7 @@ var
   DownloadTotal: Double;
   RangeUsers: Double;
   TodayUsers: Double;
+  TodayViews: Double;
   TopPageValue: Double;
   TopPageText: string;
   LastLocationText: string;
@@ -1761,29 +1762,36 @@ begin
   begin
     ContentRow := Snapshot.ContentRows[ContentIndex];
     EventText := LowerCase(ContentRow.EventName);
-    if (Pos('download', EventText) > 0) or
-      (Pos('download', LowerCase(ContentRow.PagePath)) > 0) then
+    if Pos('download', EventText) > 0 then
       DownloadTotal := DownloadTotal + ContentRow.EventCount;
 
-    if ContentRow.EventCount > TopPageValue then
+    if ContentRow.ScreenPageViews > TopPageValue then
     begin
-      TopPageValue := ContentRow.EventCount;
-      TopPageText := CleanLocationText(ContentRow.PagePath, 'None');
-      if TopPageText = '/' then
+      TopPageValue := ContentRow.ScreenPageViews;
+      TopPageText := CleanLocationText(ContentRow.PageTitle, '');
+      if TopPageText = '' then
+        TopPageText := CleanLocationText(ContentRow.PagePath, 'None');
+      if (TopPageText = '/') or SameText(TopPageText, '(title not set)') then
         TopPageText := 'Home page';
     end;
   end;
 
-  RangeUsers := 0;
+  RangeUsers := Snapshot.KpiSummary.ActiveUsers;
   TodayUsers := 0;
+  TodayViews := 0;
   for TrendIndex := 0 to Snapshot.TrendPoints.Count - 1 do
   begin
-    RangeUsers := RangeUsers + Snapshot.TrendPoints[TrendIndex].ActiveUsers;
     if SameDate(Snapshot.TrendPoints[TrendIndex].DateValue, Date) then
+    begin
       TodayUsers := Snapshot.TrendPoints[TrendIndex].ActiveUsers;
+      TodayViews := Snapshot.TrendPoints[TrendIndex].ScreenPageViews;
+    end;
   end;
   if (TodayUsers = 0) and (cmbDateRange.ItemIndex = 0) then
+  begin
     TodayUsers := Snapshot.KpiSummary.ActiveUsers;
+    TodayViews := Snapshot.KpiSummary.ScreenPageViews;
+  end;
 
   LastLocationText := 'None';
   if Snapshot.RealtimeSummary.HasLastActivity then
@@ -1813,8 +1821,7 @@ begin
   lblTileUsersTodayValue.Text := FormatFloat('#,##0', TodayUsers);
   lblTileUsersRangeTitle.Text := 'Users for' + sLineBreak + DownloadRangeText;
   lblTileUsersRangeValue.Text := FormatFloat('#,##0', RangeUsers);
-  lblTileViewsTodayValue.Text := FormatFloat('#,##0',
-    Snapshot.KpiSummary.ScreenPageViews);
+  lblTileViewsTodayValue.Text := FormatFloat('#,##0', TodayViews);
   lblTileDownloadsTodayTitle.Text := 'Downloads' + sLineBreak + DownloadRangeText;
   lblTileDownloadsTodayValue.Text := FormatFloat('#,##0', DownloadTotal);
   lblTileActiveNowValue.Text := FormatFloat('#,##0',
@@ -1822,7 +1829,8 @@ begin
   lblTileLastLocationValue.Text := LastLocationText;
   lblTileTopPageValue.Text := TopPageText;
   lblTileRealtimeViewsTitle.Text := 'Views last 30 min';
-  lblTileRealtimeViewsValue.Text := '0';
+  lblTileRealtimeViewsValue.Text := FormatFloat('#,##0',
+    Snapshot.RealtimeSummary.ScreenPageViews);
 end;
 
 procedure TfrmMainDashboard.PopulateRealtimePanel(
