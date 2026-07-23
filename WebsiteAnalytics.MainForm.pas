@@ -240,6 +240,7 @@ type
     FSelectorChangeEnabled: Boolean;
     FLoadingGridColumnWidths: Boolean;
     FLastRealtimeActivityText: string;
+    FLastLocationTileText: string;
     function CompareAcquisitionRowsAlphabetically(const Left, Right: TGA4AcquisitionRow): Integer;
     function CompareContentRowsAlphabetically(const Left, Right: TGA4ContentRow): Integer;
     function CompareDeviceRowsAlphabetically(const Left, Right: TGA4DeviceRow): Integer;
@@ -434,6 +435,7 @@ begin
   FContentListMode := clmAllRows;
   FLastRealtimeActivityText := 'Current location: None' + sLineBreak +
     'Last activity: None';
+  FLastLocationTileText := 'None';
   AdjustQuadrantProportions;
   UpdateChartTitle;
   lblGeographyTitle.Text := 'Where did they come from?';
@@ -1793,7 +1795,7 @@ begin
     TodayViews := Snapshot.KpiSummary.ScreenPageViews;
   end;
 
-  LastLocationText := 'None';
+  LastLocationText := FLastLocationTileText;
   if Snapshot.RealtimeSummary.HasLastActivity then
   begin
     LastLocationText := CleanLocationText(Snapshot.RealtimeSummary.LastCity, '');
@@ -1801,6 +1803,7 @@ begin
       LastLocationText := LastLocationText + ', ';
     LastLocationText := LastLocationText +
       CleanLocationText(Snapshot.RealtimeSummary.LastCountry, 'Unknown');
+    FLastLocationTileText := LastLocationText;
   end;
 
   case cmbDateRange.ItemIndex of
@@ -2417,6 +2420,7 @@ procedure TfrmMainDashboard.cmbWebsiteChange(Sender: TObject);
 begin
   FLastRealtimeActivityText := 'Current location: None' + sLineBreak +
     'Last activity: None';
+  FLastLocationTileText := 'None';
   lblRealtimeActivity.Text := FLastRealtimeActivityText;
   RefreshDashboardForSelectorChange('Website property');
 end;
