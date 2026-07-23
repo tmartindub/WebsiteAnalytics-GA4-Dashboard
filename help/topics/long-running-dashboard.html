@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Running the Dashboard All Day</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="topic-body">
+<main class="topic">
+<h1>Running the Dashboard All Day</h1>
+<figure><img src="../assets/screenshot-auto-update.png" alt="Running the Dashboard All Day screenshot"><figcaption>Running the Dashboard All Day screen reference.</figcaption></figure>
+<h2>Intended use</h2>
+<ul>
+<li>The app is designed to be left open as a glanceable dashboard. With Auto update 60 sec enabled, it can refresh while you work on other things.</li>
+<li>The status bar reports each update or error so ordinary use does not require a separate log window.</li>
+</ul>
+<h2>Token refresh</h2>
+<ul>
+<li>Google access tokens are short-lived. When GA4 returns a refreshable token error, the app attempts to refresh the access token and retry the update once.</li>
+<li>The saved encrypted refresh token normally avoids Google login screens on startup. If it is unavailable, revoked, or cannot be decrypted, reconnect from Settings.</li>
+</ul>
+</main>
+</body>
+</html>

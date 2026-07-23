@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Quick Start</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="topic-body">
+<main class="topic">
+<h1>Quick Start</h1>
+<figure><img src="../assets/screenshot-settings-redacted.png" alt="Quick Start screenshot"><figcaption>Quick Start screen reference.</figcaption></figure>
+<h2>First run checklist</h2>
+<ul>
+<li>Open Settings from the hero section and enter your Google desktop OAuth client ID and client secret.</li>
+<li>Confirm the Redirect URI shown in Settings matches the local loopback URI used by the desktop OAuth client.</li>
+<li>Open Properties and confirm the numeric GA4 property IDs for your websites.</li>
+<li>Click Connect Google, finish browser sign-in once, return to the app, then click Update.</li>
+</ul>
+<h2>After first sign-in</h2>
+<ul>
+<li>The app saves the Google refresh token encrypted in SQLite using Windows DPAPI.</li>
+<li>Future startups try silent reconnect first. Google login screens appear only when the saved authorization is missing, revoked, expired beyond refresh, or cannot be decrypted for the current Windows account.</li>
+</ul>
+<h2>Everyday use</h2>
+<ul>
+<li>Choose a website property, choose the date range, leave Auto update 60 sec checked, and let the app run.</li>
+<li>Read the four quadrants: locations, pages/actions, users graph, and realtime activity.</li>
+</ul>
+</main>
+</body>
+</html>

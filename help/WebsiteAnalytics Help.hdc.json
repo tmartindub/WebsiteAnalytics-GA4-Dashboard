@@ -1,0 +1,91 @@
+﻿{
+  "name": "Website Analytics Help",
+  "outputPath": "C:\\Projects\\WebsiteAnalytics\\help",
+  "lastChanged": "July 22, 2026",
+  "topics": [
+    {
+      "title": "Overview",
+      "url": "topics/overview.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Quick Start",
+      "url": "topics/quick-start.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Dashboard Tour",
+      "url": "topics/dashboard-tour.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Website and Date Filters",
+      "url": "topics/website-date-filters.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Users Graph",
+      "url": "topics/trend-graph.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Visitor Locations",
+      "url": "topics/locations.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Pages, Downloads, and Actions",
+      "url": "topics/pages-actions.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Realtime Activity",
+      "url": "topics/realtime.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Managing Properties",
+      "url": "topics/properties.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Settings and Google Sign-in",
+      "url": "topics/settings-and-google.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Running the Dashboard All Day",
+      "url": "topics/long-running-dashboard.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Diagnostics",
+      "url": "topics/diagnostics.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Troubleshooting",
+      "url": "topics/troubleshooting.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    },
+    {
+      "title": "Privacy and Storage",
+      "url": "topics/privacy-storage.html",
+      "status": "Approved",
+      "owner": "Website Analytics"
+    }
+  ]
+}

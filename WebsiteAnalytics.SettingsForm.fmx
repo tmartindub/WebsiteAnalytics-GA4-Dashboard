@@ -1,0 +1,336 @@
+object frmSettings: TfrmSettings
+  Left = 0
+  Top = 0
+  BorderStyle = Sizeable
+  Caption = 'Website Analytics - Settings'
+  ClientHeight = 720
+  ClientWidth = 980
+  Fill.Color = xFFF2F7FD
+  Fill.Kind = Solid
+  WindowState = wsMaximized
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object RootLayout: TLayout
+    Align = Client
+    Padding.Left = 22.000000000000000000
+    Padding.Top = 20.000000000000000000
+    Padding.Right = 22.000000000000000000
+    Padding.Bottom = 20.000000000000000000
+    Size.Width = 980.000000000000000000
+    Size.Height = 720.000000000000000000
+    Size.PlatformDefault = False
+    object HeaderCard: TRectangle
+      Align = Top
+      Fill.Color = xFF1974DF
+      Padding.Left = 28.000000000000000000
+      Padding.Top = 18.000000000000000000
+      Size.Width = 936.000000000000000000
+      Size.Height = 100.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 22.000000000000000000
+      YRadius = 22.000000000000000000
+      object lblTitle: TLabel
+        StyledSettings = []
+        Position.X = 28.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 430.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Dashboard Settings'
+        TextSettings.Font.Size = 24.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claWhite
+      end
+      object lblSubtitle: TLabel
+        StyledSettings = []
+        Position.X = 30.000000000000000000
+        Position.Y = 55.000000000000000000
+        Size.Width = 790.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Choose simple defaults for the live in-memory dashboard.'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.FontColor = xFFF1F7FF
+      end
+    end
+    object SettingsCard: TRectangle
+      Align = Client
+      Fill.Color = claWhite
+      Margins.Top = 16.000000000000000000
+      Padding.Left = 30.000000000000000000
+      Padding.Top = 24.000000000000000000
+      Padding.Right = 30.000000000000000000
+      Padding.Bottom = 22.000000000000000000
+      Size.Width = 936.000000000000000000
+      Size.Height = 564.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFD7E5F6
+      XRadius = 18.000000000000000000
+      YRadius = 18.000000000000000000
+      object lblDefaultWebsite: TLabel
+        StyledSettings = []
+        Position.X = 30.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 220.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Default website selection'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF365674
+      end
+      object cmbDefaultWebsite: TComboBox
+        Position.X = 30.000000000000000000
+        Position.Y = 51.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        ItemIndex = 0
+        Items.Strings = (
+          'All websites'
+          'Carillon Bells'
+          'VCL2FMX'
+          'GPS Sync')
+        TabOrder = 0
+      end
+      object lblDefaultRange: TLabel
+        StyledSettings = []
+        Position.X = 360.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 220.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Default date range'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF365674
+      end
+      object cmbDefaultRange: TComboBox
+        Position.X = 360.000000000000000000
+        Position.Y = 51.000000000000000000
+        Size.Width = 290.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        ItemIndex = 2
+        Items.Strings = (
+          'Today'
+          'Last 7 days'
+          'Last 28 days'
+          'Last 90 days'
+          'This year')
+        TabOrder = 1
+      end
+      object chkRefreshAtStartup: TCheckBox
+        Position.X = 30.000000000000000000
+        Position.Y = 115.000000000000000000
+        Size.Width = 285.000000000000000000
+        Size.Height = 28.000000000000000000
+        Size.PlatformDefault = False
+        IsChecked = True
+        TabOrder = 2
+        Text = 'Retrieve live data when the program opens'
+      end
+      object chkPreviousPeriod: TCheckBox
+        Position.X = 360.000000000000000000
+        Position.Y = 115.000000000000000000
+        Size.Width = 285.000000000000000000
+        Size.Height = 28.000000000000000000
+        Size.PlatformDefault = False
+        IsChecked = True
+        TabOrder = 3
+        Text = 'Compare with the previous period'
+      end
+      object lblThemeNotice: TLabel
+        StyledSettings = []
+        Position.X = 30.000000000000000000
+        Position.Y = 472.000000000000000000
+        Size.Width = 620.000000000000000000
+        Size.Height = 38.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Visual scheme: VCL2FMX-inspired blue workspace, navy panels, and white report cards.'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.FontColor = xFF365674
+        TextSettings.WordWrap = True
+      end
+      object lblGA4Setup: TLabel
+        StyledSettings = []
+        Position.X = 30.000000000000000000
+        Position.Y = 165.000000000000000000
+        Size.Width = 620.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'GA4 desktop OAuth setup'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF163A63
+      end
+      object lblOAuthClientId: TLabel
+        StyledSettings = []
+        Position.X = 30.000000000000000000
+        Position.Y = 202.000000000000000000
+        Size.Width = 260.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'OAuth desktop client ID'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF365674
+      end
+      object edtOAuthClientId: TEdit
+        Position.X = 30.000000000000000000
+        Position.Y = 227.000000000000000000
+        Size.Width = 620.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        TextPrompt = 'Google Cloud desktop OAuth client ID'
+      end
+      object lblOAuthClientSecret: TLabel
+        StyledSettings = []
+        Position.X = 30.000000000000000000
+        Position.Y = 274.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'OAuth desktop client secret'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF365674
+      end
+      object edtOAuthClientSecret: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Position.X = 30.000000000000000000
+        Position.Y = 299.000000000000000000
+        Size.Width = 415.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        Password = True
+        TabOrder = 5
+        TextPrompt = 'Paste the desktop client secret if Google shows one'
+      end
+      object btnToggleOAuthSecret: TButton
+        Position.X = 455.000000000000000000
+        Position.Y = 299.000000000000000000
+        Size.Width = 90.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 6
+        Text = 'Show'
+        OnClick = btnToggleOAuthSecretClick
+      end
+      object lblOAuthRedirectPort: TLabel
+        StyledSettings = []
+        Position.X = 570.000000000000000000
+        Position.Y = 274.000000000000000000
+        Size.Width = 175.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Loopback port'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF365674
+      end
+      object edtOAuthRedirectPort: TEdit
+        Position.X = 570.000000000000000000
+        Position.Y = 299.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 7
+        Text = '53682'
+        TextPrompt = '53682'
+        OnChange = edtOAuthRedirectPortChange
+      end
+      object lblOAuthRedirectUri: TLabel
+        StyledSettings = []
+        Position.X = 30.000000000000000000
+        Position.Y = 342.000000000000000000
+        Size.Width = 780.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Redirect URI: http://127.0.0.1:53682/oauth2redirect'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF163A63
+      end
+      object lblOAuthSetupHelp: TLabel
+        StyledSettings = []
+        Position.X = 30.000000000000000000
+        Position.Y = 370.000000000000000000
+        Size.Width = 780.000000000000000000
+        Size.Height = 42.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Connect Google opens your browser. Sign in with the Google account that can read these GA4 properties. The app receives a temporary token for this session only; it does not store your Google password or analytics results.'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.FontColor = xFF365674
+        TextSettings.WordWrap = True
+      end
+      object lblStorageNotice: TLabel
+        StyledSettings = []
+        Position.X = 30.000000000000000000
+        Position.Y = 526.000000000000000000
+        Size.Width = 620.000000000000000000
+        Size.Height = 42.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Saved settings live in databases\WebsiteAnalytics.sqlite3 beside the source. GA4 report results are never saved; they are held in memory only and discarded when the app closes.'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF163A63
+        TextSettings.WordWrap = True
+      end
+      object btnClose: TButton
+        Position.X = 680.000000000000000000
+        Position.Y = 414.000000000000000000
+        Size.Width = 150.000000000000000000
+        Size.Height = 42.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 10
+        Text = 'Save and Close'
+        OnClick = btnCloseClick
+      end
+      object btnConnectGoogle: TButton
+        Position.X = 30.000000000000000000
+        Position.Y = 414.000000000000000000
+        Size.Width = 150.000000000000000000
+        Size.Height = 38.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 8
+        Text = 'Connect Google'
+        OnClick = btnConnectGoogleClick
+      end
+      object btnDisconnectGoogle: TButton
+        Position.X = 195.000000000000000000
+        Position.Y = 414.000000000000000000
+        Size.Width = 150.000000000000000000
+        Size.Height = 38.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 9
+        Text = 'Disconnect'
+        OnClick = btnDisconnectGoogleClick
+      end
+      object lblOAuthStatus: TLabel
+        StyledSettings = []
+        Position.X = 370.000000000000000000
+        Position.Y = 414.000000000000000000
+        Size.Width = 290.000000000000000000
+        Size.Height = 42.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Not connected'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.FontColor = xFF365674
+        TextSettings.WordWrap = True
+      end
+    end
+  end
+  object OAuthStatusTimer: TTimer
+    Enabled = False
+    Interval = 1000
+    OnTimer = OAuthStatusTimerTimer
+    Left = 840
+    Top = 40
+  end
+end

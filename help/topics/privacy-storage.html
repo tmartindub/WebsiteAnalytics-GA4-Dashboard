@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Privacy and Storage</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="topic-body">
+<main class="topic">
+<h1>Privacy and Storage</h1>
+<figure><img src="../assets/screenshot-privacy-storage.png" alt="Privacy and Storage screenshot"><figcaption>Privacy and Storage screen reference.</figcaption></figure>
+<h2>Memory-only analytics</h2>
+<ul>
+<li>The report snapshot is held in memory. Closing the app discards location, page/action, graph, and realtime report rows.</li>
+<li>This design keeps the project simple and avoids building a second analytics database.</li>
+</ul>
+<h2>What SQLite stores</h2>
+<ul>
+<li>SQLite stores local settings and website definitions: dashboard defaults, property IDs, OAuth setup values, saved grid widths, and the DPAPI-encrypted refresh token.</li>
+<li>The actual local SQLite file is ignored by Git. The schema SQL is tracked so a fresh database can be created at startup if needed.</li>
+</ul>
+<h2>Open-source safety</h2>
+<p>Do not commit local databases, OAuth secrets, encrypted refresh tokens, credential JSON files, keys, PEM files, or .env files.</p>
+</main>
+</body>
+</html>

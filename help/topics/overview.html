@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Overview</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="topic-body">
+<main class="topic">
+<h1>Overview</h1>
+<figure><img src="../assets/screenshot-dashboard-overview.png" alt="Overview screenshot"><figcaption>Overview screen reference.</figcaption></figure>
+<h2>What Website Analytics does</h2>
+<ul>
+<li>Website Analytics is a FireMonkey desktop dashboard for reading Google Analytics 4 website data without spending the day inside the GA4 web interface.</li>
+<li>The app retrieves selected reports through the GA4 Data API, formats the results in memory, and presents them in four practical areas: visitor locations, pages/downloads/actions, a users-over-time graph, and realtime activity.</li>
+<li>The initial properties are Carillon Bells, VCL2FMX, and GPS Sync. More website properties can be added later from Properties.</li>
+</ul>
+<h2>What it stores and does not store</h2>
+<ul>
+<li>Analytics report rows are not saved to SQLite, text files, logs, or exported datasets. They live in memory while the program is open and are discarded when the app closes.</li>
+<li>SQLite stores settings only: website definitions, GA4 property IDs, dashboard defaults, OAuth setup values, saved grid widths, and the encrypted refresh token used for silent reconnect.</li>
+</ul>
+<h2>Normal use</h2>
+<ul>
+<li>Open the app, choose the website and date range, and click Update. After the first successful Google connection, startup normally reconnects silently using the saved encrypted refresh token.</li>
+<li>Leave Auto update 60 sec checked if you want the dashboard to refresh while it remains open.</li>
+</ul>
+</main>
+</body>
+</html>

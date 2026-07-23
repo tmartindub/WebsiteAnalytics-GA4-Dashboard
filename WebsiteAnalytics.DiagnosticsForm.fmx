@@ -1,0 +1,173 @@
+object frmDiagnostics: TfrmDiagnostics
+  Left = 0
+  Top = 0
+  BorderStyle = Sizeable
+  Caption = 'Website Analytics - Diagnostics'
+  ClientHeight = 580
+  ClientWidth = 820
+  Fill.Color = xFFF2F7FD
+  Fill.Kind = Solid
+  WindowState = wsMaximized
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object RootLayout: TLayout
+    Align = Client
+    Padding.Left = 22.000000000000000000
+    Padding.Top = 20.000000000000000000
+    Padding.Right = 22.000000000000000000
+    Padding.Bottom = 20.000000000000000000
+    Size.Width = 820.000000000000000000
+    Size.Height = 580.000000000000000000
+    Size.PlatformDefault = False
+    object HeaderCard: TRectangle
+      Align = Top
+      Fill.Color = xFF1974DF
+      Padding.Left = 28.000000000000000000
+      Padding.Top = 18.000000000000000000
+      Size.Width = 776.000000000000000000
+      Size.Height = 100.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 22.000000000000000000
+      YRadius = 22.000000000000000000
+      object lblTitle: TLabel
+        StyledSettings = []
+        Position.X = 28.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 460.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Diagnostics and Data Quality'
+        TextSettings.Font.Size = 24.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claWhite
+      end
+      object lblSubtitle: TLabel
+        StyledSettings = []
+        Position.X = 30.000000000000000000
+        Position.Y = 55.000000000000000000
+        Size.Width = 650.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Connection, freshness, quota, and error details will appear here.'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.FontColor = xFFF1F7FF
+      end
+    end
+    object StatusCard: TRectangle
+      Align = Top
+      Fill.Color = claWhite
+      Margins.Top = 16.000000000000000000
+      Padding.Left = 28.000000000000000000
+      Padding.Top = 20.000000000000000000
+      Size.Width = 776.000000000000000000
+      Size.Height = 166.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFD7E5F6
+      XRadius = 18.000000000000000000
+      YRadius = 18.000000000000000000
+      object lblAuthenticationTitle: TLabel
+        StyledSettings = []
+        Position.X = 28.000000000000000000
+        Position.Y = 20.000000000000000000
+        Size.Width = 230.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Authentication'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF365674
+      end
+      object lblAuthenticationValue: TLabel
+        StyledSettings = []
+        Position.X = 280.000000000000000000
+        Position.Y = 20.000000000000000000
+        Size.Width = 430.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Not configured - planned for Phase 2'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.FontColor = xFF163A63
+      end
+      object lblGA4Title: TLabel
+        StyledSettings = []
+        Position.X = 28.000000000000000000
+        Position.Y = 64.000000000000000000
+        Size.Width = 230.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'GA4 connection'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF365674
+      end
+      object lblGA4Value: TLabel
+        StyledSettings = []
+        Position.X = 280.000000000000000000
+        Position.Y = 64.000000000000000000
+        Size.Width = 430.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'No API request made'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.FontColor = xFF163A63
+      end
+      object lblStorageTitle: TLabel
+        StyledSettings = []
+        Position.X = 28.000000000000000000
+        Position.Y = 108.000000000000000000
+        Size.Width = 230.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Analytics storage'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF365674
+      end
+      object lblStorageValue: TLabel
+        StyledSettings = []
+        Position.X = 280.000000000000000000
+        Position.Y = 108.000000000000000000
+        Size.Width = 430.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Memory only - no cache or database'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF163A63
+      end
+    end
+    object MemoDiagnostics: TMemo
+      Align = Client
+      Margins.Top = 14.000000000000000000
+      Size.Width = 776.000000000000000000
+      Size.Height = 214.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Phase 1 diagnostic log'#13#10'Application shell loaded.'#13#10'Three initial website definitions are available.'#13#10'No analytics data has been requested or stored.'
+    end
+    object btnClose: TButton
+      Align = Bottom
+      Margins.Top = 12.000000000000000000
+      Size.Width = 776.000000000000000000
+      Size.Height = 42.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Close'
+      OnClick = btnCloseClick
+    end
+    object btnRunSelfTest: TButton
+      Align = Bottom
+      Margins.Top = 12.000000000000000000
+      Size.Width = 776.000000000000000000
+      Size.Height = 42.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Run GA4 plumbing self-test'
+      OnClick = btnRunSelfTestClick
+    end
+  end
+end

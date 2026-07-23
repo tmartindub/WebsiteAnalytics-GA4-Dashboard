@@ -1,0 +1,280 @@
+object frmPropertyManager: TfrmPropertyManager
+  Left = 0
+  Top = 0
+  BorderStyle = Sizeable
+  Caption = 'Website Analytics - Manage Properties'
+  ClientHeight = 650
+  ClientWidth = 980
+  Fill.Color = xFFF2F7FD
+  Fill.Kind = Solid
+  WindowState = wsMaximized
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object RootLayout: TLayout
+    Align = Client
+    Padding.Left = 22.000000000000000000
+    Padding.Top = 20.000000000000000000
+    Padding.Right = 22.000000000000000000
+    Padding.Bottom = 20.000000000000000000
+    Size.Width = 980.000000000000000000
+    Size.Height = 650.000000000000000000
+    Size.PlatformDefault = False
+    object HeaderCard: TRectangle
+      Align = Top
+      Fill.Color = xFF1974DF
+      Padding.Left = 28.000000000000000000
+      Padding.Top = 18.000000000000000000
+      Size.Width = 936.000000000000000000
+      Size.Height = 100.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 22.000000000000000000
+      YRadius = 22.000000000000000000
+      object lblTitle: TLabel
+        StyledSettings = []
+        Position.X = 28.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 500.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Manage Website Properties'
+        TextSettings.Font.Size = 24.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claWhite
+      end
+      object lblSubtitle: TLabel
+        StyledSettings = []
+        Position.X = 30.000000000000000000
+        Position.Y = 55.000000000000000000
+        Size.Width = 780.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Begin with three properties and add more websites whenever needed.'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.FontColor = xFFF1F7FF
+      end
+    end
+    object BodyLayout: TLayout
+      Align = Client
+      Padding.Top = 16.000000000000000000
+      Size.Width = 936.000000000000000000
+      Size.Height = 510.000000000000000000
+      Size.PlatformDefault = False
+      object PropertyListCard: TRectangle
+        Align = Left
+        Fill.Color = xFF234C80
+        Margins.Top = 16.000000000000000000
+        Padding.Left = 16.000000000000000000
+        Padding.Top = 16.000000000000000000
+        Padding.Right = 16.000000000000000000
+        Padding.Bottom = 16.000000000000000000
+        Size.Width = 330.000000000000000000
+        Size.Height = 494.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        XRadius = 18.000000000000000000
+        YRadius = 18.000000000000000000
+        object lblPropertyListTitle: TLabel
+          StyledSettings = []
+          Align = Top
+          Margins.Bottom = 10.000000000000000000
+          Size.Width = 298.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'WEBSITE PROPERTIES'
+          TextSettings.Font.Size = 13.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = xFFD7E8FF
+        end
+        object lstProperties: TListBox
+          Align = Client
+          Size.Width = 298.000000000000000000
+          Size.Height = 356.000000000000000000
+          Size.PlatformDefault = False
+          OnChange = lstPropertiesChange
+          TabOrder = 0
+        end
+        object btnAddProperty: TButton
+          Align = Bottom
+          Margins.Top = 8.000000000000000000
+          Size.Width = 298.000000000000000000
+          Size.Height = 38.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Add property'
+          OnClick = btnAddPropertyClick
+        end
+        object btnRemoveProperty: TButton
+          Align = Bottom
+          Margins.Top = 8.000000000000000000
+          Size.Width = 298.000000000000000000
+          Size.Height = 38.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Remove property'
+          OnClick = btnRemovePropertyClick
+        end
+      end
+      object EditorCard: TRectangle
+        Align = Client
+        Fill.Color = claWhite
+        Margins.Left = 16.000000000000000000
+        Margins.Top = 16.000000000000000000
+        Padding.Left = 28.000000000000000000
+        Padding.Top = 20.000000000000000000
+        Padding.Right = 28.000000000000000000
+        Padding.Bottom = 18.000000000000000000
+        Size.Width = 590.000000000000000000
+        Size.Height = 494.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = xFFD7E5F6
+        XRadius = 18.000000000000000000
+        YRadius = 18.000000000000000000
+        object lblEditorTitle: TLabel
+          StyledSettings = []
+          Position.X = 28.000000000000000000
+          Position.Y = 18.000000000000000000
+          Size.Width = 470.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Property details'
+          TextSettings.Font.Size = 21.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = xFF163A63
+        end
+        object lblDisplayName: TLabel
+          StyledSettings = []
+          Position.X = 28.000000000000000000
+          Position.Y = 66.000000000000000000
+          Size.Width = 180.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Display name'
+          TextSettings.Font.Size = 13.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = xFF365674
+        end
+        object edtDisplayName: TEdit
+          Position.X = 28.000000000000000000
+          Position.Y = 91.000000000000000000
+          Size.Width = 520.000000000000000000
+          Size.Height = 36.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+        end
+        object lblWebsiteAddress: TLabel
+          StyledSettings = []
+          Position.X = 28.000000000000000000
+          Position.Y = 141.000000000000000000
+          Size.Width = 180.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Website address'
+          TextSettings.Font.Size = 13.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = xFF365674
+        end
+        object edtWebsiteAddress: TEdit
+          Position.X = 28.000000000000000000
+          Position.Y = 166.000000000000000000
+          Size.Width = 520.000000000000000000
+          Size.Height = 36.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+        end
+        object lblPropertyId: TLabel
+          StyledSettings = []
+          Position.X = 28.000000000000000000
+          Position.Y = 216.000000000000000000
+          Size.Width = 240.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'GA4 property ID (can be added later)'
+          TextSettings.Font.Size = 13.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = xFF365674
+        end
+        object edtPropertyId: TEdit
+          Position.X = 28.000000000000000000
+          Position.Y = 241.000000000000000000
+          Size.Width = 300.000000000000000000
+          Size.Height = 36.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          TextPrompt = 'Numeric GA4 property ID'
+        end
+        object lblColor: TLabel
+          StyledSettings = []
+          Position.X = 350.000000000000000000
+          Position.Y = 216.000000000000000000
+          Size.Width = 160.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Dashboard color'
+          TextSettings.Font.Size = 13.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = xFF365674
+        end
+        object cmbColor: TComboBox
+          Position.X = 350.000000000000000000
+          Position.Y = 241.000000000000000000
+          Size.Width = 198.000000000000000000
+          Size.Height = 36.000000000000000000
+          Size.PlatformDefault = False
+          ItemIndex = 3
+          Items.Strings = (
+            'Carillon Gold'
+            'VCL2FMX Blue'
+            'GPS Sync Teal'
+            'Portfolio Slate')
+          TabOrder = 3
+        end
+        object chkEnabled: TCheckBox
+          Position.X = 28.000000000000000000
+          Position.Y = 296.000000000000000000
+          Size.Width = 245.000000000000000000
+          Size.Height = 28.000000000000000000
+          Size.PlatformDefault = False
+          IsChecked = True
+          TabOrder = 4
+          Text = 'Include in dashboard updates'
+        end
+        object lblStorageNotice: TLabel
+          StyledSettings = []
+          Position.X = 28.000000000000000000
+          Position.Y = 342.000000000000000000
+          Size.Width = 520.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Phase 1 keeps these definitions in memory for the current session. Analytics results are never saved.'
+          TextSettings.Font.Size = 13.000000000000000000
+          TextSettings.FontColor = xFF5D7693
+          TextSettings.WordWrap = True
+        end
+        object btnSaveProperty: TButton
+          Position.X = 28.000000000000000000
+          Position.Y = 414.000000000000000000
+          Size.Width = 170.000000000000000000
+          Size.Height = 42.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          Text = 'Apply changes'
+          OnClick = btnSavePropertyClick
+        end
+        object btnClose: TButton
+          Position.X = 378.000000000000000000
+          Position.Y = 414.000000000000000000
+          Size.Width = 170.000000000000000000
+          Size.Height = 42.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 6
+          Text = 'Close'
+          OnClick = btnCloseClick
+        end
+      end
+    end
+  end
+end

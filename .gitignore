@@ -1,0 +1,27 @@
+# Delphi and RAD Studio generated files
+bin/
+dcu/
+__history/
+*.dproj.local
+*.identcache
+*.stat
+*.dsk
+*.map
+*.tds
+*.rsm
+*.otares
+databases/*.sqlite3
+databases/*.sqlite3-journal
+databases/*.sqlite3-wal
+databases/*.sqlite3-shm
+docs/pdf/rendered*/
+
+# Local OAuth / credential material
+.env
+*.env
+client_secret*.json
+credentials*.json
+token*.json
+*.oauth
+*.key
+*.pem

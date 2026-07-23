@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Troubleshooting</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="topic-body">
+<main class="topic">
+<h1>Troubleshooting</h1>
+<figure><img src="../assets/screenshot-troubleshooting.png" alt="Troubleshooting screenshot"><figcaption>Troubleshooting screen reference.</figcaption></figure>
+<h2>OAuth setup problems</h2>
+<ul>
+<li>If the app says OAuth client ID needed, open Settings and enter the desktop OAuth client ID from Google Cloud.</li>
+<li>If Google says the app is not verified, that is expected while the OAuth app is in testing.</li>
+<li>If Google sign-in appears every time, the saved encrypted refresh token is missing, revoked, or cannot be decrypted under the current Windows account.</li>
+</ul>
+<h2>GA4 permission problems</h2>
+<ul>
+<li>A 403 permission error usually means the property ID is wrong or the signed-in Google account cannot read the GA4 property.</li>
+<li>Confirm the numeric GA4 property ID in Properties, then confirm the Google account is listed in GA4 Admin with sufficient access.</li>
+</ul>
+<h2>No rows or missing downloads</h2>
+<ul>
+<li>No rows can simply mean the selected property/date range has no returned data.</li>
+<li>Missing downloads usually means GA4 did not report file_download or related events for the selected date range.</li>
+</ul>
+</main>
+</body>
+</html>

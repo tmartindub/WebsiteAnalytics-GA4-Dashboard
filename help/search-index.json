@@ -1,0 +1,100 @@
+[
+  {
+    "title": "Overview",
+    "url": "topics/overview.html",
+    "tags": "Overview overview dashboard ga4 memory privacy four quadrants What Website Analytics does Website Analytics is a FireMonkey desktop dashboard for reading Google Analytics 4 website data without spending the day inside the GA4 web interface. The app retrieves selected reports through the GA4 Data API, formats the results in memory, and presents them in four practical areas: visitor locations, pages/downloads/actions, a users-over-time graph, and realtime activity. The initial properties are Carillon Bells, VCL2FMX, and GPS Sync. More website properties can be added later from Properties. What it stores and does not store Analytics report rows are not saved to SQLite, text files, logs, or exported datasets. They live in memory while the program is open and are discarded when the app closes. SQLite stores settings only: website definitions, GA4 property IDs, dashboard defaults, OAuth setup values, saved grid widths, and the encrypted refresh token used for silent reconnect. Normal use Open the app, choose the website and date range, and click Update. After the first successful Google connection, startup normally reconnects silently using the saved encrypted refresh token. Leave Auto update 60 sec checked if you want the dashboard to refresh while it remains open.",
+    "helpId": "IDH_OVERVIEW",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Quick Start",
+    "url": "topics/quick-start.html",
+    "tags": "Quick Start quick start update connect google oauth token First run checklist Open Settings from the hero section and enter your Google desktop OAuth client ID and client secret. Confirm the Redirect URI shown in Settings matches the local loopback URI used by the desktop OAuth client. Open Properties and confirm the numeric GA4 property IDs for your websites. Click Connect Google, finish browser sign-in once, return to the app, then click Update. After first sign-in The app saves the Google refresh token encrypted in SQLite using Windows DPAPI. Future startups try silent reconnect first. Google login screens appear only when the saved authorization is missing, revoked, expired beyond refresh, or cannot be decrypted for the current Windows account. Everyday use Choose a website property, choose the date range, leave Auto update 60 sec checked, and let the app run. Read the four quadrants: locations, pages/actions, users graph, and realtime activity.",
+    "helpId": "IDH_QUICK_START",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Dashboard Tour",
+    "url": "topics/dashboard-tour.html",
+    "tags": "Dashboard Tour dashboard hero quadrants graph grid status settings Hero section The top section shows the app title, current connection state, Update, Settings, and Help. Connected means the app currently has a usable in-memory Google access token. Not connected means the app needs authorization or has not refreshed yet. Filters Website property selects which GA4 property is requested. Date range controls the report period: Today, Last 7 days, Last 28 days, Last 90 days, or This year. Auto update 60 sec refreshes data while the app is connected and left running. Four quadrants Upper-left: where visitors came from, grouped by country, region/state, city, users, and sessions. Lower-left: what visitors used, including page title, path, action/event, users, and events/downloads. Upper-right: users over the selected date range as a bar graph. Lower-right: current active visitors, current location, and last activity.",
+    "helpId": "IDH_DASHBOARD_TOUR",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Website and Date Filters",
+    "url": "topics/website-date-filters.html",
+    "tags": "Website and Date Filters website property date range filter update Website property The website property combo box controls the GA4 property ID used for the next Update call. Reviewing individual properties is the clearest workflow because each property has its own location, page/action, graph, and realtime results. Date range The date range maps to GA4 request dates. Today shows the current day, Last 7 days and Last 28 days show rolling windows, Last 90 days gives a broader pattern, and This year starts on January 1. Click Update to fetch immediately, or let Auto update refresh on the next timer interval.",
+    "helpId": "IDH_WEBSITE_DATE_FILTERS",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Users Graph",
+    "url": "topics/trend-graph.html",
+    "tags": "Users Graph trend graph users bar chart hover tooltip What the graph shows The upper-right graph shows users over the selected date range. The chart uses bars, whole-number scale labels, zero at the bottom, and month/day labels under the bars. Hovering over a bar shows a compact tooltip with the date and user count. Why only users Users over time is the cleanest high-level pattern for this dashboard. It answers whether the site is quiet, normal, or unusually active without cluttering the display.",
+    "helpId": "IDH_TREND_GRAPH",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Visitor Locations",
+    "url": "topics/locations.html",
+    "tags": "Visitor Locations locations countries usa city state region geography What the location grid shows The upper-left grid shows Country, Region/State, City, Users, and Sessions. Rows are sorted alphabetically for easier scanning. US visitors appear with city and state. International visitors appear with city, country, and region when GA4 supplies it. Not set values GA4 sometimes returns not set for country, region, or city. Those rows are displayed because they are actual GA4 results, not dashboard errors.",
+    "helpId": "IDH_LOCATIONS",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Pages, Downloads, and Actions",
+    "url": "topics/pages-actions.html",
+    "tags": "Pages, Downloads, and Actions pages actions downloads events clicks page views What the page/action grid shows The lower-left grid shows Page title, Path, Action/Event, Users, and Events/downloads. Rows combine pages, downloads, and GA4 events returned for the selected property/date range. Downloads appear only when GA4 reports download events such as file_download. How to read it Use Page title and Path to identify the content. Use Action/Event to distinguish page views, downloads, scrolls, clicks, and other reported events. Use Users and Events/downloads to see how many visitors used the item and how many times the event occurred.",
+    "helpId": "IDH_PAGES_ACTIONS",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Realtime Activity",
+    "url": "topics/realtime.html",
+    "tags": "Realtime Activity realtime active users ga4 current visitors last activity What Realtime shows The lower-right panel shows current active visitors returned by GA4 for the selected property. It also shows the current location and last activity time when GA4 supplies location details. The last activity text resets when the selected property changes so stale location text is not carried between sites. Why it may show zero Zero can be normal for low-traffic sites when nobody is active in the realtime window. Realtime and historical report rows can differ briefly because GA4 realtime and standard reports are separate reporting surfaces.",
+    "helpId": "IDH_REALTIME",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Managing Properties",
+    "url": "topics/properties.html",
+    "tags": "Managing Properties properties property id add remove website Purpose Properties is where website definitions are added, edited, enabled, disabled, or removed. A property definition contains the display name, website address, numeric GA4 property ID, display color, enabled state, and display order. Required GA4 value Use the numeric GA4 property ID, not the measurement ID and not the Google Cloud project number. The dashboard uses that numeric ID in GA4 Data API requests.",
+    "helpId": "IDH_PROPERTIES",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Settings and Google Sign-in",
+    "url": "topics/settings-and-google.html",
+    "tags": "Settings and Google Sign-in settings oauth google sign in client secret redirect refresh token dpapi Dashboard defaults Settings stores default website selection, default date range, startup refresh preference, OAuth client ID, OAuth client secret, and loopback port. Save and Close writes these choices to the portable SQLite settings database. Google OAuth setup The OAuth desktop client ID and client secret come from your Google Cloud OAuth desktop client. They are not your Gmail address. The client secret is masked by default. Use Show only when you need to reveal or edit it. Connect Google opens your browser for the first authorization. Google redirects back to the local loopback listener and the app receives an access token plus a refresh token. Silent reconnect The refresh token is encrypted with Windows DPAPI and saved in SQLite. On later launches, the app tries to decrypt that value and refresh the access token silently before opening Google. Disconnect clears the current access token and the saved encrypted refresh token. Credential caution Do not publish your local SQLite database, OAuth client secret, encrypted refresh token, credential JSON files, token files, or .env files. For open-source use, each user should bring their own Google Cloud desktop OAuth client.",
+    "helpId": "IDH_SETTINGS_AND_GOOGLE",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Running the Dashboard All Day",
+    "url": "topics/long-running-dashboard.html",
+    "tags": "Running the Dashboard All Day auto update timer token refresh long running Intended use The app is designed to be left open as a glanceable dashboard. With Auto update 60 sec enabled, it can refresh while you work on other things. The status bar reports each update or error so ordinary use does not require a separate log window. Token refresh Google access tokens are short-lived. When GA4 returns a refreshable token error, the app attempts to refresh the access token and retry the update once. The saved encrypted refresh token normally avoids Google login screens on startup. If it is unavailable, revoked, or cannot be decrypted, reconnect from Settings.",
+    "helpId": "IDH_LONG_RUNNING_DASHBOARD",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Diagnostics",
+    "url": "topics/diagnostics.html",
+    "tags": "Diagnostics diagnostics self test ga4 request parser What Diagnostics checks Diagnostics shows authentication state, GA4 status, and storage status. Run Self Test builds sample GA4 report requests and parses a sample trend response. It does not make a live Google request. When to use it Use Diagnostics when setup or data retrieval is confusing and you want to confirm the app can prepare report requests and parse responses.",
+    "helpId": "IDH_DIAGNOSTICS",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Troubleshooting",
+    "url": "topics/troubleshooting.html",
+    "tags": "Troubleshooting troubleshooting errors oauth permissions ga4 OAuth setup problems If the app says OAuth client ID needed, open Settings and enter the desktop OAuth client ID from Google Cloud. If Google says the app is not verified, that is expected while the OAuth app is in testing. If Google sign-in appears every time, the saved encrypted refresh token is missing, revoked, or cannot be decrypted under the current Windows account. GA4 permission problems A 403 permission error usually means the property ID is wrong or the signed-in Google account cannot read the GA4 property. Confirm the numeric GA4 property ID in Properties, then confirm the Google account is listed in GA4 Admin with sufficient access. No rows or missing downloads No rows can simply mean the selected property/date range has no returned data. Missing downloads usually means GA4 did not report file_download or related events for the selected date range.",
+    "helpId": "IDH_TROUBLESHOOTING",
+    "owner": "Website Analytics"
+  },
+  {
+    "title": "Privacy and Storage",
+    "url": "topics/privacy-storage.html",
+    "tags": "Privacy and Storage privacy storage sqlite memory tokens dpapi Memory-only analytics The report snapshot is held in memory. Closing the app discards location, page/action, graph, and realtime report rows. This design keeps the project simple and avoids building a second analytics database. What SQLite stores SQLite stores local settings and website definitions: dashboard defaults, property IDs, OAuth setup values, saved grid widths, and the DPAPI-encrypted refresh token. The actual local SQLite file is ignored by Git. The schema SQL is tracked so a fresh database can be created at startup if needed. Open-source safety Do not commit local databases, OAuth secrets, encrypted refresh tokens, credential JSON files, keys, PEM files, or .env files.",
+    "helpId": "IDH_PRIVACY_STORAGE",
+    "owner": "Website Analytics"
+  }
+]

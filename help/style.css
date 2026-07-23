@@ -1,0 +1,31 @@
+:root { --bg: #08111f; --panel: #0b2341; --card: #12243a; --line: #2b4f76; --accent: #38bdf8; --gold: #ffd166; --text: #111827; }
+body { margin: 0; font-family: Segoe UI, Arial, sans-serif; color: #e5f0ff; background: var(--bg); }
+.help-shell { display: grid; grid-template-columns: 340px 1fr; height: 100vh; }
+aside { background: var(--panel); padding: 18px; overflow: auto; border-right: 1px solid var(--line); }
+aside h1 { margin: 0 0 4px; font-size: 24px; color: #fff; }
+.help-subtitle { margin: 0 0 14px; color: #b6cae3; font-size: 13px; }
+.shell-search input { width: 100%; box-sizing: border-box; padding: 10px; border-radius: 10px; border: 1px solid var(--line); }
+#searchResults a, #searchResults span { display: block; color: var(--gold); padding: 6px 2px; }
+.shell-links { display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+.shell-links a { background: #10243b; border: 1px solid var(--line); border-radius: 10px; padding: 7px 9px; }
+.shell-links a, nav a { color: #e5f0ff; text-decoration: none; }
+nav ul { list-style: none; padding: 0; margin: 12px 0 0; }
+nav li { margin: 7px 0; }
+nav a { display: block; padding: 10px 11px; border-radius: 12px; background: #10243b; border: 1px solid var(--line); font-weight: 600; }
+nav a.active, nav a:hover { background: var(--accent); color: #06111f; }
+.topic-frame { background: #0b1526; padding: 14px; }
+iframe { width: 100%; height: calc(100vh - 28px); border: 1px solid var(--line); border-radius: 16px; background: white; }
+.topic-body { background: #f8fbff; color: var(--text); }
+.topic { max-width: 1040px; margin: 0 auto; padding: 32px 38px 60px; }
+.topic h1 { color: #0b2341; border-bottom: 4px solid var(--accent); padding-bottom: 9px; margin-top: 0; font-size: 32px; }
+.topic h2 { color: #1974df; margin-top: 28px; font-size: 22px; }
+.topic p, .topic li { font-size: 16px; line-height: 1.58; }
+.topic li { margin-bottom: 8px; }
+figure { margin: 18px 0 26px; border: 1px solid #cbd5e1; border-radius: 14px; padding: 10px; background: #fff; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12); }
+figure img { display: block; max-width: 100%; height: auto; border-radius: 9px; }
+figcaption { color: #475569; font-size: 13px; padding-top: 8px; text-align: center; }
+.print-topic { page-break-after: always; }
+@media print {
+  .topic { max-width: none; padding: 24px; }
+  figure { box-shadow: none; }
+}
