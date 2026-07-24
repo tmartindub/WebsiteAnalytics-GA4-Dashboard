@@ -258,7 +258,9 @@ type
     function ComparisonDeltaColor(const CurrentValue, PreviousValue: Double): TAlphaColor;
     function DateToGA4String(const Value: TDateTime): string;
     function IsTokenRefreshableError(const ErrorText: string): Boolean;
+    function IsAllWebsitesSelected: Boolean;
     function LocationRowMatchesView(const GeographyRow: TGA4GeographyRow): Boolean;
+    function SelectedWebsiteDisplayName: string;
     function GridColumnWidthSettingName(const Column: TColumn): string;
     function SelectedDateRangeCaption: string;
     function SelectedTrendCaption: string;
@@ -287,8 +289,12 @@ type
     procedure SelectSection(const SectionIndex: Integer);
     procedure RefreshDashboardForSelectorChange(const ReasonText: string);
     procedure SetRoundedTabStyle(const TabShape: TRectangle; const IsSelected: Boolean);
+    procedure MergeSnapshotIntoCurrent(const SourceSnapshot: TGA4ReportSnapshot);
+    procedure FetchPropertyReportsWithTokenRefresh(const WebsiteProperty: TWebsitePropertyDefinition;
+      const StartDate, EndDate: string; const TargetSnapshot: TGA4ReportSnapshot);
     procedure FetchReportsWithTokenRefresh(const WebsiteProperty: TWebsitePropertyDefinition;
       const StartDate, EndDate: string);
+    procedure FetchAllWebsiteReportsWithTokenRefresh(const StartDate, EndDate: string);
     procedure FetchSessionsByDateWithTokenRefresh(const WebsiteProperty: TWebsitePropertyDefinition;
       const ReportDate: string);
     procedure RefreshSessionsByDate;
@@ -336,6 +342,227 @@ const
   SECTION_SETTINGS = 9;
   SECTION_DIAGNOSTICS = 10;
   MAX_REPORT_SECTION = SECTION_REALTIME;
+
+function TfrmMainDashboard.IsAllWebsitesSelected: Boolean;
+begin
+  Result := cmbWebsite.ItemIndex = 0;
+end;
+
+function TfrmMainDashboard.SelectedWebsiteDisplayName: string;
+var
+  WebsiteProperty: TWebsitePropertyDefinition;
+begin
+  if IsAllWebsitesSelected then
+    Exit('All websites');
+
+  WebsiteProperty := SelectedPropertyForUpdate;
+  if Assigned(WebsiteProperty) then
+    Result := WebsiteProperty.DisplayName
+  else
+    Result := 'selected website';
+end;
+
+procedure TfrmMainDashboard.MergeSnapshotIntoCurrent(
+  const SourceSnapshot: TGA4ReportSnapshot);
+var
+  ContentIndex: Integer;
+  ContentKey: string;
+  ContentMap: TDictionary<string, Integer>;
+  ContentRow: TGA4ContentRow;
+  ExistingContentRow: TGA4ContentRow;
+  ExistingEngagementWeight: Double;
+  ExistingTrendPoint: TGA4TrendPoint;
+  GeographyIndex: Integer;
+  GeographyKey: string;
+  GeographyMap: TDictionary<string, Integer>;
+  GeographyRow: TGA4GeographyRow;
+  ExistingGeographyRow: TGA4GeographyRow;
+  KpiSessionTotal: Double;
+  PreviousKpiSessionTotal: Double;
+  TargetIndex: Integer;
+  TargetSnapshot: TGA4ReportSnapshot;
+  TrendIndex: Integer;
+  TrendKey: Integer;
+  TrendMap: TDictionary<Integer, Integer>;
+  TrendPoint: TGA4TrendPoint;
+begin
+  if not Assigned(SourceSnapshot) then
+    Exit;
+
+  TargetSnapshot := dmAnalyticsMemory.CurrentSnapshot;
+  if not Assigned(TargetSnapshot) then
+    Exit;
+
+  KpiSessionTotal := TargetSnapshot.KpiSummary.Sessions +
+    SourceSnapshot.KpiSummary.Sessions;
+  if KpiSessionTotal > 0 then
+    TargetSnapshot.KpiSummary.EngagementRate :=
+      ((TargetSnapshot.KpiSummary.EngagementRate *
+        TargetSnapshot.KpiSummary.Sessions) +
+       (SourceSnapshot.KpiSummary.EngagementRate *
+        SourceSnapshot.KpiSummary.Sessions)) / KpiSessionTotal;
+  TargetSnapshot.KpiSummary.ActiveUsers :=
+    TargetSnapshot.KpiSummary.ActiveUsers + SourceSnapshot.KpiSummary.ActiveUsers;
+  TargetSnapshot.KpiSummary.Sessions :=
+    TargetSnapshot.KpiSummary.Sessions + SourceSnapshot.KpiSummary.Sessions;
+  TargetSnapshot.KpiSummary.ScreenPageViews :=
+    TargetSnapshot.KpiSummary.ScreenPageViews +
+    SourceSnapshot.KpiSummary.ScreenPageViews;
+
+  if SourceSnapshot.HasPreviousKpiSummary then
+  begin
+    PreviousKpiSessionTotal := TargetSnapshot.PreviousKpiSummary.Sessions +
+      SourceSnapshot.PreviousKpiSummary.Sessions;
+    if PreviousKpiSessionTotal > 0 then
+      TargetSnapshot.PreviousKpiSummary.EngagementRate :=
+        ((TargetSnapshot.PreviousKpiSummary.EngagementRate *
+          TargetSnapshot.PreviousKpiSummary.Sessions) +
+         (SourceSnapshot.PreviousKpiSummary.EngagementRate *
+          SourceSnapshot.PreviousKpiSummary.Sessions)) /
+        PreviousKpiSessionTotal;
+    TargetSnapshot.PreviousKpiSummary.ActiveUsers :=
+      TargetSnapshot.PreviousKpiSummary.ActiveUsers +
+      SourceSnapshot.PreviousKpiSummary.ActiveUsers;
+    TargetSnapshot.PreviousKpiSummary.Sessions :=
+      TargetSnapshot.PreviousKpiSummary.Sessions +
+      SourceSnapshot.PreviousKpiSummary.Sessions;
+    TargetSnapshot.PreviousKpiSummary.ScreenPageViews :=
+      TargetSnapshot.PreviousKpiSummary.ScreenPageViews +
+      SourceSnapshot.PreviousKpiSummary.ScreenPageViews;
+    TargetSnapshot.HasPreviousKpiSummary := True;
+  end;
+
+  TrendMap := TDictionary<Integer, Integer>.Create;
+  GeographyMap := TDictionary<string, Integer>.Create;
+  ContentMap := TDictionary<string, Integer>.Create;
+  try
+    for TrendIndex := 0 to TargetSnapshot.TrendPoints.Count - 1 do
+      TrendMap.AddOrSetValue(Trunc(TargetSnapshot.TrendPoints[TrendIndex].DateValue),
+        TrendIndex);
+    for TrendIndex := 0 to SourceSnapshot.TrendPoints.Count - 1 do
+    begin
+      TrendPoint := SourceSnapshot.TrendPoints[TrendIndex];
+      TrendKey := Trunc(TrendPoint.DateValue);
+      if TrendMap.TryGetValue(TrendKey, TargetIndex) then
+      begin
+        ExistingTrendPoint := TargetSnapshot.TrendPoints[TargetIndex];
+        ExistingEngagementWeight := ExistingTrendPoint.Sessions + TrendPoint.Sessions;
+        if ExistingEngagementWeight > 0 then
+          ExistingTrendPoint.EngagementRate :=
+            ((ExistingTrendPoint.EngagementRate * ExistingTrendPoint.Sessions) +
+             (TrendPoint.EngagementRate * TrendPoint.Sessions)) /
+            ExistingEngagementWeight;
+        ExistingTrendPoint.ActiveUsers := ExistingTrendPoint.ActiveUsers +
+          TrendPoint.ActiveUsers;
+        ExistingTrendPoint.Sessions := ExistingTrendPoint.Sessions +
+          TrendPoint.Sessions;
+        ExistingTrendPoint.ScreenPageViews := ExistingTrendPoint.ScreenPageViews +
+          TrendPoint.ScreenPageViews;
+        ExistingTrendPoint.EventCount := ExistingTrendPoint.EventCount +
+          TrendPoint.EventCount;
+        ExistingTrendPoint.Value := ExistingTrendPoint.ActiveUsers;
+        TargetSnapshot.TrendPoints[TargetIndex] := ExistingTrendPoint;
+      end
+      else
+      begin
+        TrendMap.Add(TrendKey, TargetSnapshot.TrendPoints.Count);
+        TargetSnapshot.TrendPoints.Add(TrendPoint);
+      end;
+    end;
+
+    for GeographyIndex := 0 to TargetSnapshot.GeographyRows.Count - 1 do
+    begin
+      GeographyRow := TargetSnapshot.GeographyRows[GeographyIndex];
+      GeographyKey := GeographyRow.Country + #9 + GeographyRow.Region + #9 +
+        GeographyRow.City;
+      GeographyMap.AddOrSetValue(GeographyKey, GeographyIndex);
+    end;
+    for GeographyIndex := 0 to SourceSnapshot.GeographyRows.Count - 1 do
+    begin
+      GeographyRow := SourceSnapshot.GeographyRows[GeographyIndex];
+      GeographyKey := GeographyRow.Country + #9 + GeographyRow.Region + #9 +
+        GeographyRow.City;
+      if GeographyMap.TryGetValue(GeographyKey, TargetIndex) then
+      begin
+        ExistingGeographyRow := TargetSnapshot.GeographyRows[TargetIndex];
+        ExistingEngagementWeight := ExistingGeographyRow.Sessions +
+          GeographyRow.Sessions;
+        if ExistingEngagementWeight > 0 then
+          ExistingGeographyRow.EngagementRate :=
+            ((ExistingGeographyRow.EngagementRate *
+              ExistingGeographyRow.Sessions) +
+             (GeographyRow.EngagementRate * GeographyRow.Sessions)) /
+            ExistingEngagementWeight;
+        ExistingGeographyRow.ActiveUsers := ExistingGeographyRow.ActiveUsers +
+          GeographyRow.ActiveUsers;
+        ExistingGeographyRow.Sessions := ExistingGeographyRow.Sessions +
+          GeographyRow.Sessions;
+        TargetSnapshot.GeographyRows[TargetIndex] := ExistingGeographyRow;
+      end
+      else
+      begin
+        GeographyMap.Add(GeographyKey, TargetSnapshot.GeographyRows.Count);
+        TargetSnapshot.GeographyRows.Add(GeographyRow);
+      end;
+    end;
+
+    for ContentIndex := 0 to TargetSnapshot.ContentRows.Count - 1 do
+    begin
+      ContentRow := TargetSnapshot.ContentRows[ContentIndex];
+      ContentKey := ContentRow.PagePath + #9 + ContentRow.PageTitle + #9 +
+        ContentRow.EventName;
+      ContentMap.AddOrSetValue(ContentKey, ContentIndex);
+    end;
+    for ContentIndex := 0 to SourceSnapshot.ContentRows.Count - 1 do
+    begin
+      ContentRow := SourceSnapshot.ContentRows[ContentIndex];
+      ContentKey := ContentRow.PagePath + #9 + ContentRow.PageTitle + #9 +
+        ContentRow.EventName;
+      if ContentMap.TryGetValue(ContentKey, TargetIndex) then
+      begin
+        ExistingContentRow := TargetSnapshot.ContentRows[TargetIndex];
+        ExistingContentRow.ScreenPageViews :=
+          ExistingContentRow.ScreenPageViews + ContentRow.ScreenPageViews;
+        ExistingContentRow.ActiveUsers := ExistingContentRow.ActiveUsers +
+          ContentRow.ActiveUsers;
+        ExistingContentRow.EventCount := ExistingContentRow.EventCount +
+          ContentRow.EventCount;
+        ExistingContentRow.EngagementSeconds :=
+          ExistingContentRow.EngagementSeconds + ContentRow.EngagementSeconds;
+        TargetSnapshot.ContentRows[TargetIndex] := ExistingContentRow;
+      end
+      else
+      begin
+        ContentMap.Add(ContentKey, TargetSnapshot.ContentRows.Count);
+        TargetSnapshot.ContentRows.Add(ContentRow);
+      end;
+    end;
+  finally
+    ContentMap.Free;
+    GeographyMap.Free;
+    TrendMap.Free;
+  end;
+
+  TargetSnapshot.RealtimeSummary.ActiveUsers :=
+    TargetSnapshot.RealtimeSummary.ActiveUsers +
+    SourceSnapshot.RealtimeSummary.ActiveUsers;
+  TargetSnapshot.RealtimeSummary.ScreenPageViews :=
+    TargetSnapshot.RealtimeSummary.ScreenPageViews +
+    SourceSnapshot.RealtimeSummary.ScreenPageViews;
+  if SourceSnapshot.RealtimeSummary.HasLastActivity and
+    ((not TargetSnapshot.RealtimeSummary.HasLastActivity) or
+     (SourceSnapshot.RealtimeSummary.LastMinutesAgo <
+      TargetSnapshot.RealtimeSummary.LastMinutesAgo)) then
+  begin
+    TargetSnapshot.RealtimeSummary.LastCountry :=
+      SourceSnapshot.RealtimeSummary.LastCountry;
+    TargetSnapshot.RealtimeSummary.LastCity :=
+      SourceSnapshot.RealtimeSummary.LastCity;
+    TargetSnapshot.RealtimeSummary.LastMinutesAgo :=
+      SourceSnapshot.RealtimeSummary.LastMinutesAgo;
+    TargetSnapshot.RealtimeSummary.HasLastActivity := True;
+  end;
+end;
 
 procedure TfrmMainDashboard.AdjustQuadrantProportions;
 const
@@ -1876,9 +2103,9 @@ begin
   lblRealtimeActivity.Text := FLastRealtimeActivityText;
 end;
 
-procedure TfrmMainDashboard.FetchReportsWithTokenRefresh(
+procedure TfrmMainDashboard.FetchPropertyReportsWithTokenRefresh(
   const WebsiteProperty: TWebsitePropertyDefinition; const StartDate,
-  EndDate: string);
+  EndDate: string; const TargetSnapshot: TGA4ReportSnapshot);
 var
   OAuthClientId: string;
   OAuthClientSecret: string;
@@ -1889,15 +2116,15 @@ var
   begin
     dmGA4.FetchStandardReports(dmAuthentication.AccessToken,
       WebsiteProperty.PropertyId, StartDate, EndDate,
-      dmAnalyticsMemory.CurrentSnapshot);
+      TargetSnapshot);
 
     if chkComparePrevious.IsChecked then
     begin
       SelectedPreviousDateRange(PreviousStartDate, PreviousEndDate);
       dmGA4.FetchKpiSummary(dmAuthentication.AccessToken,
         WebsiteProperty.PropertyId, PreviousStartDate, PreviousEndDate,
-        dmAnalyticsMemory.CurrentSnapshot.PreviousKpiSummary);
-      dmAnalyticsMemory.CurrentSnapshot.HasPreviousKpiSummary := True;
+        TargetSnapshot.PreviousKpiSummary);
+      TargetSnapshot.HasPreviousKpiSummary := True;
     end;
   end;
 
@@ -2018,12 +2245,15 @@ var
   EnabledIndex: Integer;
 begin
   Result := nil;
+  if IsAllWebsitesSelected then
+    Exit;
+
   EnabledIndex := 0;
 
   for PropertyIndex := 0 to dmAnalyticsMemory.PropertyCount - 1 do
     if dmAnalyticsMemory[PropertyIndex].Enabled then
     begin
-      if (cmbWebsite.ItemIndex = 0) or (cmbWebsite.ItemIndex = EnabledIndex + 1) then
+      if cmbWebsite.ItemIndex = EnabledIndex + 1 then
         Exit(dmAnalyticsMemory[PropertyIndex]);
       Inc(EnabledIndex);
     end;
@@ -2089,6 +2319,43 @@ begin
     Canvas.FillText(RectF(ChartRect.Right - 46, RowTop, ChartRect.Right,
       RowTop + RowStep), ValueText, False, 1, [], TTextAlign.Trailing,
       TTextAlign.Center);
+  end;
+end;
+
+procedure TfrmMainDashboard.FetchReportsWithTokenRefresh(
+  const WebsiteProperty: TWebsitePropertyDefinition; const StartDate,
+  EndDate: string);
+begin
+  FetchPropertyReportsWithTokenRefresh(WebsiteProperty, StartDate, EndDate,
+    dmAnalyticsMemory.CurrentSnapshot);
+end;
+
+procedure TfrmMainDashboard.FetchAllWebsiteReportsWithTokenRefresh(
+  const StartDate, EndDate: string);
+var
+  PropertyIndex: Integer;
+  TemporarySnapshot: TGA4ReportSnapshot;
+  WebsiteProperty: TWebsitePropertyDefinition;
+begin
+  dmAnalyticsMemory.CurrentSnapshot.Clear;
+  TemporarySnapshot := TGA4ReportSnapshot.Create;
+  try
+    for PropertyIndex := 0 to dmAnalyticsMemory.PropertyCount - 1 do
+    begin
+      WebsiteProperty := dmAnalyticsMemory[PropertyIndex];
+      if (not WebsiteProperty.Enabled) or (Trim(WebsiteProperty.PropertyId) = '') then
+        Continue;
+
+      TemporarySnapshot.Clear;
+      lblStatusBar.Text := 'Calling GA4 Data API for ' +
+        WebsiteProperty.DisplayName + '.';
+      Application.ProcessMessages;
+      FetchPropertyReportsWithTokenRefresh(WebsiteProperty, StartDate, EndDate,
+        TemporarySnapshot);
+      MergeSnapshotIntoCurrent(TemporarySnapshot);
+    end;
+  finally
+    TemporarySnapshot.Free;
   end;
 end;
 
@@ -2623,6 +2890,8 @@ end;
 procedure TfrmMainDashboard.btnUpdateClick(Sender: TObject);
 var
   WebsiteProperty: TWebsitePropertyDefinition;
+  PropertyIndex: Integer;
+  PropertyIdCount: Integer;
   OAuthClientId: string;
   OAuthPort: string;
   AuthorizationUrl: string;
@@ -2631,19 +2900,22 @@ var
   EndDate: string;
 begin
   WebsiteProperty := SelectedPropertyForUpdate;
-  if WebsiteProperty = nil then
+  PropertyIdCount := 0;
+  if IsAllWebsitesSelected then
   begin
-    lblConnectionStatus.Text := 'No property selected';
-    lblRefreshStatus.Text := 'Enable at least one website property';
-    lblStatusBar.Text := 'Enable at least one website property. No analytics request was prepared.';
-    Exit;
-  end;
+    for PropertyIndex := 0 to dmAnalyticsMemory.PropertyCount - 1 do
+      if dmAnalyticsMemory[PropertyIndex].Enabled and
+        (Trim(dmAnalyticsMemory[PropertyIndex].PropertyId) <> '') then
+        Inc(PropertyIdCount);
+  end
+  else if Assigned(WebsiteProperty) and (Trim(WebsiteProperty.PropertyId) <> '') then
+    PropertyIdCount := 1;
 
-  if Trim(WebsiteProperty.PropertyId) = '' then
+  if PropertyIdCount = 0 then
   begin
     lblConnectionStatus.Text := 'Property ID needed';
-    lblRefreshStatus.Text := 'Open Manage properties and enter the numeric GA4 property ID';
-    lblStatusBar.Text := 'Open Properties and enter the numeric GA4 property ID.';
+    lblRefreshStatus.Text := 'Open Manage properties and enter numeric GA4 property IDs';
+    lblStatusBar.Text := 'Open Properties and enter at least one numeric GA4 property ID.';
     Exit;
   end;
 
@@ -2667,7 +2939,11 @@ begin
       OAuthClientId, OAuthPort, 'website-analytics');
     lblConnectionStatus.Text := 'OAuth needed';
     lblRefreshStatus.Text := 'GA4 request and Google sign-in URL are prepared';
-    lblStatusBar.Text := 'Prepared request for property ' + WebsiteProperty.PropertyId +
+    if IsAllWebsitesSelected then
+      lblStatusBar.Text := 'Prepared GA4 requests for ' +
+        IntToStr(PropertyIdCount) + ' enabled websites. No analytics data stored.'
+    else
+      lblStatusBar.Text := 'Prepared request for property ' + WebsiteProperty.PropertyId +
       ' (' + IntToStr(Length(RequestJson)) + ' bytes, auth URL ' +
       IntToStr(Length(AuthorizationUrl)) + ' bytes). No analytics data stored.';
     Exit;
@@ -2680,15 +2956,19 @@ begin
   lblStatusBar.Text := 'Calling GA4 Data API...';
   Application.ProcessMessages;
   try
-    FetchReportsWithTokenRefresh(WebsiteProperty, StartDate, EndDate);
-    if DashboardTabs.TabIndex = SECTION_SESSIONS_BY_DATE then
+    if IsAllWebsitesSelected then
+      FetchAllWebsiteReportsWithTokenRefresh(StartDate, EndDate)
+    else
+      FetchReportsWithTokenRefresh(WebsiteProperty, StartDate, EndDate);
+    if (not IsAllWebsitesSelected) and
+      (DashboardTabs.TabIndex = SECTION_SESSIONS_BY_DATE) then
       FetchSessionsByDateWithTokenRefresh(WebsiteProperty,
         DateToGA4String(dtSessionsByDate.Date));
     UpdateDashboardFromSnapshot(dmAnalyticsMemory.CurrentSnapshot);
     lblConnectionStatus.Text := 'Connected';
     lblRefreshStatus.Text := 'Last updated at ' + FormatDateTime('h:nn AM/PM', Now);
     lblStatusBar.Text := 'Dashboard updated from live GA4 data for ' +
-      WebsiteProperty.DisplayName + ' at ' + FormatDateTime('h:nn:ss AM/PM', Now) + '.';
+      SelectedWebsiteDisplayName + ' at ' + FormatDateTime('h:nn:ss AM/PM', Now) + '.';
   except
     on E: Exception do
     begin
