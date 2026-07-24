@@ -156,6 +156,12 @@ type
     TileRealtimeViewsCard: TRectangle;
     lblTileRealtimeViewsTitle: TLabel;
     lblTileRealtimeViewsValue: TLabel;
+    TileEventsPerSessionCard: TRectangle;
+    lblTileEventsPerSessionTitle: TLabel;
+    lblTileEventsPerSessionValue: TLabel;
+    TileScrolledUsersCard: TRectangle;
+    lblTileScrolledUsersTitle: TLabel;
+    lblTileScrolledUsersValue: TLabel;
     WeeklyUsersChartCard: TRectangle;
     lblWeeklyUsersTitle: TLabel;
     cmbChartMetric: TComboBox;
@@ -396,11 +402,18 @@ begin
   KpiSessionTotal := TargetSnapshot.KpiSummary.Sessions +
     SourceSnapshot.KpiSummary.Sessions;
   if KpiSessionTotal > 0 then
+  begin
     TargetSnapshot.KpiSummary.EngagementRate :=
       ((TargetSnapshot.KpiSummary.EngagementRate *
         TargetSnapshot.KpiSummary.Sessions) +
        (SourceSnapshot.KpiSummary.EngagementRate *
         SourceSnapshot.KpiSummary.Sessions)) / KpiSessionTotal;
+    TargetSnapshot.KpiSummary.EventsPerSession :=
+      ((TargetSnapshot.KpiSummary.EventsPerSession *
+        TargetSnapshot.KpiSummary.Sessions) +
+       (SourceSnapshot.KpiSummary.EventsPerSession *
+        SourceSnapshot.KpiSummary.Sessions)) / KpiSessionTotal;
+  end;
   TargetSnapshot.KpiSummary.ActiveUsers :=
     TargetSnapshot.KpiSummary.ActiveUsers + SourceSnapshot.KpiSummary.ActiveUsers;
   TargetSnapshot.KpiSummary.Sessions :=
@@ -408,18 +421,28 @@ begin
   TargetSnapshot.KpiSummary.ScreenPageViews :=
     TargetSnapshot.KpiSummary.ScreenPageViews +
     SourceSnapshot.KpiSummary.ScreenPageViews;
+  TargetSnapshot.KpiSummary.ScrolledUsers :=
+    TargetSnapshot.KpiSummary.ScrolledUsers + SourceSnapshot.KpiSummary.ScrolledUsers;
 
   if SourceSnapshot.HasPreviousKpiSummary then
   begin
     PreviousKpiSessionTotal := TargetSnapshot.PreviousKpiSummary.Sessions +
       SourceSnapshot.PreviousKpiSummary.Sessions;
     if PreviousKpiSessionTotal > 0 then
+    begin
       TargetSnapshot.PreviousKpiSummary.EngagementRate :=
         ((TargetSnapshot.PreviousKpiSummary.EngagementRate *
           TargetSnapshot.PreviousKpiSummary.Sessions) +
          (SourceSnapshot.PreviousKpiSummary.EngagementRate *
           SourceSnapshot.PreviousKpiSummary.Sessions)) /
         PreviousKpiSessionTotal;
+      TargetSnapshot.PreviousKpiSummary.EventsPerSession :=
+        ((TargetSnapshot.PreviousKpiSummary.EventsPerSession *
+          TargetSnapshot.PreviousKpiSummary.Sessions) +
+         (SourceSnapshot.PreviousKpiSummary.EventsPerSession *
+          SourceSnapshot.PreviousKpiSummary.Sessions)) /
+        PreviousKpiSessionTotal;
+    end;
     TargetSnapshot.PreviousKpiSummary.ActiveUsers :=
       TargetSnapshot.PreviousKpiSummary.ActiveUsers +
       SourceSnapshot.PreviousKpiSummary.ActiveUsers;
@@ -429,6 +452,9 @@ begin
     TargetSnapshot.PreviousKpiSummary.ScreenPageViews :=
       TargetSnapshot.PreviousKpiSummary.ScreenPageViews +
       SourceSnapshot.PreviousKpiSummary.ScreenPageViews;
+    TargetSnapshot.PreviousKpiSummary.ScrolledUsers :=
+      TargetSnapshot.PreviousKpiSummary.ScrolledUsers +
+      SourceSnapshot.PreviousKpiSummary.ScrolledUsers;
     TargetSnapshot.HasPreviousKpiSummary := True;
   end;
 
@@ -2061,6 +2087,12 @@ begin
   lblTileRealtimeViewsTitle.Text := 'Views last 30 min';
   lblTileRealtimeViewsValue.Text := FormatFloat('#,##0',
     Snapshot.RealtimeSummary.ScreenPageViews);
+  lblTileEventsPerSessionTitle.Text := 'Events/session';
+  lblTileEventsPerSessionValue.Text := FormatFloat('0.0',
+    Snapshot.KpiSummary.EventsPerSession);
+  lblTileScrolledUsersTitle.Text := 'Scrolled';
+  lblTileScrolledUsersValue.Text := FormatFloat('#,##0',
+    Snapshot.KpiSummary.ScrolledUsers);
 end;
 
 procedure TfrmMainDashboard.PopulateRealtimePanel(

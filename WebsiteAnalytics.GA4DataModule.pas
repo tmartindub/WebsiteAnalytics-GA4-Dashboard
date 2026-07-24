@@ -317,7 +317,7 @@ begin
       grkOverview:
         RequestJson.AddPair('metrics',
           BuildMetricArray(['activeUsers', 'sessions', 'screenPageViews',
-            'engagementRate']));
+            'engagementRate', 'eventsPerSession', 'scrolledUsers']));
       grkWeeklyUsers:
         begin
           RequestJson.AddPair('dimensions', BuildDimensionArray(['date']));
@@ -399,8 +399,7 @@ begin
         begin
           RequestJson.AddPair('dimensions',
             BuildDimensionArray(['country', 'city', 'minutesAgo']));
-          RequestJson.AddPair('metrics',
-            BuildMetricArray(['activeUsers', 'screenPageViews']));
+          RequestJson.AddPair('metrics', BuildMetricArray(['activeUsers']));
           DimensionOrderBy := TJSONObject.Create;
           DimensionOrderBy.AddPair('dimensionName', 'minutesAgo');
           OrderBy := TJSONObject.Create;
@@ -424,7 +423,8 @@ begin
           RequestJson.AddPair('limit', TJSONNumber.Create(1));
         end;
       grkRealtime:
-        RequestJson.AddPair('metrics', BuildMetricArray(['activeUsers']));
+        RequestJson.AddPair('metrics',
+          BuildMetricArray(['activeUsers', 'screenPageViews']));
     end;
 
     Result := RequestJson.ToJSON;
@@ -484,6 +484,8 @@ begin
             Snapshot.KpiSummary.Sessions := MetricValue(Row, 1);
             Snapshot.KpiSummary.ScreenPageViews := MetricValue(Row, 2);
             Snapshot.KpiSummary.EngagementRate := MetricValue(Row, 3);
+            Snapshot.KpiSummary.EventsPerSession := MetricValue(Row, 4);
+            Snapshot.KpiSummary.ScrolledUsers := MetricValue(Row, 5);
           end;
         grkWeeklyUsers:
           begin
@@ -561,8 +563,6 @@ begin
           end;
         grkRealtimeActivity:
           begin
-            Snapshot.RealtimeSummary.ScreenPageViews :=
-              Snapshot.RealtimeSummary.ScreenPageViews + MetricValue(Row, 1);
             if not Snapshot.RealtimeSummary.HasLastActivity then
             begin
               Snapshot.RealtimeSummary.LastCountry := DimensionValue(Row, 0);
@@ -583,7 +583,10 @@ begin
             end;
           end;
         grkRealtime:
-          Snapshot.RealtimeSummary.ActiveUsers := MetricValue(Row, 0);
+          begin
+            Snapshot.RealtimeSummary.ActiveUsers := MetricValue(Row, 0);
+            Snapshot.RealtimeSummary.ScreenPageViews := MetricValue(Row, 1);
+          end;
       end;
     end;
 

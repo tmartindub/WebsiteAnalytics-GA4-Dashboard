@@ -33,6 +33,8 @@ type
     Sessions: Double;
     ScreenPageViews: Double;
     EngagementRate: Double;
+    EventsPerSession: Double;
+    ScrolledUsers: Double;
   end;
 
   TGA4TrendPoint = record
