@@ -8,24 +8,10 @@
 <body class="topic-body">
 <main class="topic">
 <h1>Quick Start</h1>
-<figure><img src="../assets/screenshot-settings-redacted.png" alt="Quick Start screenshot"><figcaption>Quick Start screen reference.</figcaption></figure>
-<h2>First run checklist</h2>
-<ul>
-<li>Open Settings from the hero section and enter your Google desktop OAuth client ID and client secret.</li>
-<li>Confirm the Redirect URI shown in Settings matches the local loopback URI used by the desktop OAuth client.</li>
-<li>Open Properties and confirm the numeric GA4 property IDs for your websites.</li>
-<li>Click Connect Google, finish browser sign-in once, return to the app, then click Update.</li>
-</ul>
-<h2>After first sign-in</h2>
-<ul>
-<li>The app saves the Google refresh token encrypted in SQLite using Windows DPAPI.</li>
-<li>Future startups try silent reconnect first. Google login screens appear only when the saved authorization is missing, revoked, expired beyond refresh, or cannot be decrypted for the current Windows account.</li>
-</ul>
-<h2>Everyday use</h2>
-<ul>
-<li>Choose a website property, choose the date range, leave Auto update 60 sec checked, and let the app run.</li>
-<li>Read the four quadrants: locations, pages/actions, users graph, and realtime activity.</li>
-</ul>
+<figure><img src="../assets/settings-redacted-clean.png" alt="Quick Start"><figcaption>Settings with dummy OAuth values and a hidden client secret.</figcaption></figure>
+
+
+<h2>First run</h2><ul><li>Create a Google desktop OAuth client.</li><li>Enter the client ID and secret in Settings.</li><li>Confirm the redirect URI matches your OAuth desktop client.</li><li>Connect Google once, then save settings.</li></ul><h2>Normal use</h2><ul><li>Choose a property and date range.</li><li>Leave Auto 60 sec enabled for a live wallboard-style dashboard.</li><li>Use Update for an immediate refresh.</li></ul>
 </main>
 </body>
 </html>

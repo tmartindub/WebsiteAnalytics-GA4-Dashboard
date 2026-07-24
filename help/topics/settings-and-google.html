@@ -8,29 +8,10 @@
 <body class="topic-body">
 <main class="topic">
 <h1>Settings and Google Sign-in</h1>
-<figure><img src="../assets/screenshot-settings-redacted.png" alt="Settings and Google Sign-in screenshot"><figcaption>Settings and Google Sign-in screen reference.</figcaption></figure>
-<h2>Dashboard defaults</h2>
-<ul>
-<li>Settings stores default website selection, default date range, startup refresh preference, OAuth client ID, OAuth client secret, and loopback port.</li>
-<li>Save and Close writes these choices to the portable SQLite settings database.</li>
-</ul>
-<h2>Google OAuth setup</h2>
-<ul>
-<li>The OAuth desktop client ID and client secret come from your Google Cloud OAuth desktop client. They are not your Gmail address.</li>
-<li>The client secret is masked by default. Use Show only when you need to reveal or edit it.</li>
-<li>Connect Google opens your browser for the first authorization. Google redirects back to the local loopback listener and the app receives an access token plus a refresh token.</li>
-</ul>
-<h2>Silent reconnect</h2>
-<ul>
-<li>The refresh token is encrypted with Windows DPAPI and saved in SQLite.</li>
-<li>On later launches, the app tries to decrypt that value and refresh the access token silently before opening Google.</li>
-<li>Disconnect clears the current access token and the saved encrypted refresh token.</li>
-</ul>
-<h2>Credential caution</h2>
-<ul>
-<li>Do not publish your local SQLite database, OAuth client secret, encrypted refresh token, credential JSON files, token files, or .env files.</li>
-<li>For open-source use, each user should bring their own Google Cloud desktop OAuth client.</li>
-</ul>
+<figure><img src="../assets/settings-redacted-clean.png" alt="Settings and Google Sign-in"><figcaption>OAuth examples are redacted and safe for public documentation.</figcaption></figure>
+
+<ul><li>The client secret is hidden by default in the UI.</li><li>The refresh token is encrypted locally.</li><li>The app silently reconnects on startup when the saved token is valid.</li><li>Google login appears only when the token is missing, revoked, or cannot be refreshed.</li></ul>
+
 </main>
 </body>
 </html>

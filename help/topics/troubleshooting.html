@@ -8,23 +8,10 @@
 <body class="topic-body">
 <main class="topic">
 <h1>Troubleshooting</h1>
-<figure><img src="../assets/screenshot-troubleshooting.png" alt="Troubleshooting screenshot"><figcaption>Troubleshooting screen reference.</figcaption></figure>
-<h2>OAuth setup problems</h2>
-<ul>
-<li>If the app says OAuth client ID needed, open Settings and enter the desktop OAuth client ID from Google Cloud.</li>
-<li>If Google says the app is not verified, that is expected while the OAuth app is in testing.</li>
-<li>If Google sign-in appears every time, the saved encrypted refresh token is missing, revoked, or cannot be decrypted under the current Windows account.</li>
-</ul>
-<h2>GA4 permission problems</h2>
-<ul>
-<li>A 403 permission error usually means the property ID is wrong or the signed-in Google account cannot read the GA4 property.</li>
-<li>Confirm the numeric GA4 property ID in Properties, then confirm the Google account is listed in GA4 Admin with sufficient access.</li>
-</ul>
-<h2>No rows or missing downloads</h2>
-<ul>
-<li>No rows can simply mean the selected property/date range has no returned data.</li>
-<li>Missing downloads usually means GA4 did not report file_download or related events for the selected date range.</li>
-</ul>
+<figure><img src="../assets/diagnostics-clean.png" alt="Troubleshooting"><figcaption>Diagnostics are the first stop for GA4 errors.</figcaption></figure>
+
+
+<h2>Common issues</h2><ul><li>403 permission errors usually mean the signed-in account cannot read that GA4 property.</li><li>Zero data can be normal for quiet sites or dates with no GA4 traffic.</li><li>Realtime and standard GA4 reports can update on different schedules.</li></ul><h2>What to check</h2><ul><li>OAuth client ID and secret.</li><li>GA4 property ID.</li><li>Google Analytics Data API enabled in Google Cloud.</li><li>Tester/verification status for the OAuth consent screen.</li></ul>
 </main>
 </body>
 </html>

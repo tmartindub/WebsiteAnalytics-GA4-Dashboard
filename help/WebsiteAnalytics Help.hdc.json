@@ -1,7 +1,7 @@
-﻿{
+{
   "name": "Website Analytics Help",
-  "outputPath": "C:\\Projects\\WebsiteAnalytics\\help",
-  "lastChanged": "July 22, 2026",
+  "outputPath": "help",
+  "lastChanged": "July 23, 2026",
   "topics": [
     {
       "title": "Overview",
