@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from datetime import date
 from pathlib import Path
 
@@ -938,6 +939,109 @@ def html_topic(title: str, asset_key: str, intro: str, points: list[str]) -> str
 """
 
 
+def hdc_key_value_items(items: dict[str, str]) -> list[dict[str, str]]:
+    return [{"key": key, "value": value} for key, value in items.items()]
+
+
+def hdc_help_id(title: str) -> str:
+    help_id = re.sub(r"[^A-Za-z0-9]+", "_", title.upper()).strip("_")
+    return f"IDH_{help_id}"
+
+
+def hdc_topic_id(filename: str) -> str:
+    topic_id = re.sub(r"[^A-Za-z0-9]+", "_", Path(filename).stem.lower()).strip("_")
+    return f"topic_{topic_id}"
+
+
+def hdc_topic_body(title: str, asset_key: str, intro: str, points: list[str]) -> str:
+    lis = "".join(f"<li>{p}</li>" for p in points)
+    img = ASSET_FILES[asset_key]
+    return (
+        f"<h1>{title}</h1>\n"
+        f"<figure><img src=\"assets/{img}\" alt=\"{title}\">"
+        "<figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n"
+        f"<p>{intro}</p>\n"
+        f"<ul>{lis}</ul>"
+    )
+
+
+def build_hdc_project(toc: list[dict[str, str]]) -> dict:
+    topics = []
+    updated_at = date.today().isoformat() + "T00:00:00Z"
+    for item in toc:
+        filename = item["url"].replace("topics/", "")
+        title, asset_key, intro, points = HELP_TOPICS[filename]
+        topics.append({
+            "id": hdc_topic_id(filename),
+            "parentId": "",
+            "title": title,
+            "body": hdc_topic_body(title, asset_key, intro, points),
+            "status": item["status"],
+            "iconName": "auto",
+            "owner": item["owner"],
+            "helpId": hdc_help_id(title),
+            "language": "en-US",
+            "tags": "Website Analytics; GA4; dashboard; help",
+            "conditions": "",
+            "updatedAt": updated_at,
+        })
+
+    assets = {name: f"assets\\{name}" for name in sorted(set(ASSET_FILES.values()))}
+    return {
+        "name": "Website Analytics Help",
+        "version": "1.0",
+        "company": "Website Analytics",
+        "outputPath": "help",
+        "variables": hdc_key_value_items({
+            "ProductName": "Website Analytics",
+            "Version": "1.0",
+            "LastChanged": TODAY,
+            "Company": "Website Analytics",
+        }),
+        "snippets": hdc_key_value_items({
+            "PrivacyNote": "GA4 report rows are fetched into memory and are not stored.",
+            "OAuthNote": "Each user supplies their own Google OAuth desktop credentials.",
+        }),
+        "conditions": hdc_key_value_items({
+            "Public": "Public/open-source documentation",
+            "Developer": "Developer and maintainer notes",
+        }),
+        "assets": hdc_key_value_items(assets),
+        "templates": hdc_key_value_items({
+            "StandardTopic": "Heading, sanitized screenshot, summary paragraph, and practical bullet list",
+        }),
+        "glossary": hdc_key_value_items({
+            "GA4": "Google Analytics 4.",
+            "OAuth": "Google sign-in flow used to authorize GA4 API access.",
+            "Refresh token": "Encrypted local token used to reconnect without repeated browser sign-in.",
+            "Property ID": "Numeric GA4 property identifier used by the Data API.",
+        }),
+        "indexKeywords": hdc_key_value_items({
+            "GA4": "Overview; Settings and Google Sign-in; Managing Properties",
+            "OAuth": "Quick Start; Settings and Google Sign-in; Troubleshooting",
+            "Dashboard": "Dashboard Tour; Users Graph; Realtime Activity",
+            "Privacy": "Privacy and Storage",
+        }),
+        "buildProfiles": hdc_key_value_items({
+            "Local HTML": "Build the local HTML help files used by the desktop app.",
+        }),
+        "projectSettings": hdc_key_value_items({
+            "OutputPath": "help",
+            "HtmlTitle": "Website Analytics Help",
+            "HtmlHomeFileName": "index.html",
+            "DefaultLanguage": "en-US",
+        }),
+        "themes": hdc_key_value_items({
+            "LightProfessional": "Clean light documentation theme with blue accents.",
+        }),
+        "importExportRules": hdc_key_value_items({
+            "PublicDocs": "Use sanitized screenshots and avoid private property IDs, tokens, personal locations, or local developer paths.",
+        }),
+        "lastChanged": TODAY,
+        "topics": topics,
+    }
+
+
 def build_help() -> None:
     HELP.mkdir(parents=True, exist_ok=True)
     (HELP / "topics").mkdir(parents=True, exist_ok=True)
@@ -986,7 +1090,7 @@ figcaption { color:var(--muted); font-size:13px; padding-top:8px; text-align:cen
     (HELP / "toc.json").write_text(json.dumps(toc, indent=2), encoding="utf-8")
     (HELP / "search-index.json").write_text(json.dumps(search, indent=2), encoding="utf-8")
     (HELP / "metadata.json").write_text(json.dumps({"lastChanged": TODAY, "generator": "tools/refresh_websiteanalytics_docs.py"}, indent=2), encoding="utf-8")
-    (HELP / "WebsiteAnalytics Help.hdc.json").write_text(json.dumps({"name": "Website Analytics Help", "outputPath": "help", "lastChanged": TODAY, "topics": toc}, indent=2), encoding="utf-8")
+    (HELP / "WebsiteAnalytics Help.hdc.json").write_text(json.dumps(build_hdc_project(toc), indent=2), encoding="utf-8")
 
     nav = "".join(
         f"<li><a href=\"{item['url']}\" target=\"topicFrame\" data-topic-url=\"{item['url']}\" "

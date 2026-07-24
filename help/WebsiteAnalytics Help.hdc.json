@@ -1,91 +1,359 @@
 {
   "name": "Website Analytics Help",
+  "version": "1.0",
+  "company": "Website Analytics",
   "outputPath": "help",
+  "variables": [
+    {
+      "key": "ProductName",
+      "value": "Website Analytics"
+    },
+    {
+      "key": "Version",
+      "value": "1.0"
+    },
+    {
+      "key": "LastChanged",
+      "value": "July 23, 2026"
+    },
+    {
+      "key": "Company",
+      "value": "Website Analytics"
+    }
+  ],
+  "snippets": [
+    {
+      "key": "PrivacyNote",
+      "value": "GA4 report rows are fetched into memory and are not stored."
+    },
+    {
+      "key": "OAuthNote",
+      "value": "Each user supplies their own Google OAuth desktop credentials."
+    }
+  ],
+  "conditions": [
+    {
+      "key": "Public",
+      "value": "Public/open-source documentation"
+    },
+    {
+      "key": "Developer",
+      "value": "Developer and maintainer notes"
+    }
+  ],
+  "assets": [
+    {
+      "key": "real-dashboard-current-redacted.png",
+      "value": "assets\\real-dashboard-current-redacted.png"
+    },
+    {
+      "key": "real-hero-redacted.png",
+      "value": "assets\\real-hero-redacted.png"
+    },
+    {
+      "key": "real-locations-grid-redacted.png",
+      "value": "assets\\real-locations-grid-redacted.png"
+    },
+    {
+      "key": "real-pages-downloads-redacted.png",
+      "value": "assets\\real-pages-downloads-redacted.png"
+    },
+    {
+      "key": "real-properties-redacted.png",
+      "value": "assets\\real-properties-redacted.png"
+    },
+    {
+      "key": "real-realtime-panel.png",
+      "value": "assets\\real-realtime-panel.png"
+    },
+    {
+      "key": "real-settings-redacted.png",
+      "value": "assets\\real-settings-redacted.png"
+    },
+    {
+      "key": "real-summary-cards.png",
+      "value": "assets\\real-summary-cards.png"
+    },
+    {
+      "key": "real-users-graph.png",
+      "value": "assets\\real-users-graph.png"
+    }
+  ],
+  "templates": [
+    {
+      "key": "StandardTopic",
+      "value": "Heading, sanitized screenshot, summary paragraph, and practical bullet list"
+    }
+  ],
+  "glossary": [
+    {
+      "key": "GA4",
+      "value": "Google Analytics 4."
+    },
+    {
+      "key": "OAuth",
+      "value": "Google sign-in flow used to authorize GA4 API access."
+    },
+    {
+      "key": "Refresh token",
+      "value": "Encrypted local token used to reconnect without repeated browser sign-in."
+    },
+    {
+      "key": "Property ID",
+      "value": "Numeric GA4 property identifier used by the Data API."
+    }
+  ],
+  "indexKeywords": [
+    {
+      "key": "GA4",
+      "value": "Overview; Settings and Google Sign-in; Managing Properties"
+    },
+    {
+      "key": "OAuth",
+      "value": "Quick Start; Settings and Google Sign-in; Troubleshooting"
+    },
+    {
+      "key": "Dashboard",
+      "value": "Dashboard Tour; Users Graph; Realtime Activity"
+    },
+    {
+      "key": "Privacy",
+      "value": "Privacy and Storage"
+    }
+  ],
+  "buildProfiles": [
+    {
+      "key": "Local HTML",
+      "value": "Build the local HTML help files used by the desktop app."
+    }
+  ],
+  "projectSettings": [
+    {
+      "key": "OutputPath",
+      "value": "help"
+    },
+    {
+      "key": "HtmlTitle",
+      "value": "Website Analytics Help"
+    },
+    {
+      "key": "HtmlHomeFileName",
+      "value": "index.html"
+    },
+    {
+      "key": "DefaultLanguage",
+      "value": "en-US"
+    }
+  ],
+  "themes": [
+    {
+      "key": "LightProfessional",
+      "value": "Clean light documentation theme with blue accents."
+    }
+  ],
+  "importExportRules": [
+    {
+      "key": "PublicDocs",
+      "value": "Use sanitized screenshots and avoid private property IDs, tokens, personal locations, or local developer paths."
+    }
+  ],
   "lastChanged": "July 23, 2026",
   "topics": [
     {
+      "id": "topic_overview",
+      "parentId": "",
       "title": "Overview",
-      "url": "topics/overview.html",
+      "body": "<h1>Overview</h1>\n<figure><img src=\"assets/real-dashboard-current-redacted.png\" alt=\"Overview\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>Website Analytics is a focused GA4 desktop dashboard. It retrieves selected data through GA4 APIs, keeps report rows in memory, and presents the information in practical panels instead of GA4's busier web interface.</p>\n<ul><li>Use the dashboard to answer who visited, where they came from, what they used, how users changed over the selected range, and what is happening now.</li><li>Report rows are memory-only and are discarded when the app closes.</li><li>Settings and property definitions are stored locally.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_OVERVIEW",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_quick_start",
+      "parentId": "",
       "title": "Quick Start",
-      "url": "topics/quick-start.html",
+      "body": "<h1>Quick Start</h1>\n<figure><img src=\"assets/real-settings-redacted.png\" alt=\"Quick Start\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>First setup connects your own Google OAuth desktop client and your own GA4 properties.</p>\n<ul><li>Enter your OAuth desktop client ID and client secret in Settings.</li><li>Use the numeric GA4 property ID in Properties.</li><li>Click Connect Google once, complete browser sign-in, then return to the app and update.</li><li>After first sign-in, startup should reconnect silently if the encrypted refresh token is still valid.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_QUICK_START",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_dashboard_tour",
+      "parentId": "",
       "title": "Dashboard Tour",
-      "url": "topics/dashboard-tour.html",
+      "body": "<h1>Dashboard Tour</h1>\n<figure><img src=\"assets/real-dashboard-current-redacted.png\" alt=\"Dashboard Tour\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>The dashboard is organized into real work areas: controls at the top, data lookup on the left, trend/realtime on the right.</p>\n<ul><li>The hero area holds property selection, date range, auto-update, status, Update, Settings, and Help.</li><li>The upper-left grid shows locations.</li><li>The lower-left area shows pages, downloads, and actions.</li><li>The upper-right graph shows users over the selected range.</li><li>The lower-right panel shows realtime status.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_DASHBOARD_TOUR",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_website_date_filters",
+      "parentId": "",
       "title": "Website and Date Filters",
-      "url": "topics/website-date-filters.html",
+      "body": "<h1>Website and Date Filters</h1>\n<figure><img src=\"assets/real-hero-redacted.png\" alt=\"Website and Date Filters\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>The website selector controls which GA4 property is queried. The date range controls historical report data and charts.</p>\n<ul><li>Individual properties are usually clearest for review.</li><li>All websites combines enabled properties when you want a broad view.</li><li>Auto 60 sec refreshes the dashboard while the app is running.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_WEBSITE_AND_DATE_FILTERS",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_trend_graph",
+      "parentId": "",
       "title": "Users Graph",
-      "url": "topics/trend-graph.html",
+      "body": "<h1>Users Graph</h1>\n<figure><img src=\"assets/real-users-graph.png\" alt=\"Users Graph\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>The users graph shows the selected date range as readable bars.</p>\n<ul><li>The graph starts at zero and uses whole-number scale labels.</li><li>Hover over a bar to see the exact value.</li><li>The title includes the date span so you know what you are looking at.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_USERS_GRAPH",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_locations",
+      "parentId": "",
       "title": "Visitor Locations",
-      "url": "topics/locations.html",
+      "body": "<h1>Visitor Locations</h1>\n<figure><img src=\"assets/real-locations-grid-redacted.png\" alt=\"Visitor Locations\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>The location grid groups visitors by country, region/state, and city.</p>\n<ul><li>Rows are sorted alphabetically for easier lookup.</li><li>GA4 may return (not set) when it cannot resolve a dimension.</li><li>Users and sessions are separate GA4 metrics and may differ.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_VISITOR_LOCATIONS",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_pages_actions",
+      "parentId": "",
       "title": "Pages, Downloads, and Actions",
-      "url": "topics/pages-actions.html",
+      "body": "<h1>Pages, Downloads, and Actions</h1>\n<figure><img src=\"assets/real-pages-downloads-redacted.png\" alt=\"Pages, Downloads, and Actions\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>The pages/downloads area shows what visitors used during the selected date range.</p>\n<ul><li>Page title and path identify the content.</li><li>Action/Event distinguishes page views, downloads, scrolls, clicks, and engagement events.</li><li>Download counts depend on GA4 receiving download events from the website.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_PAGES_DOWNLOADS_AND_ACTIONS",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_realtime",
+      "parentId": "",
       "title": "Realtime Activity",
-      "url": "topics/realtime.html",
+      "body": "<h1>Realtime Activity</h1>\n<figure><img src=\"assets/real-realtime-panel.png\" alt=\"Realtime Activity\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>Realtime shows current active visitors and current/last activity information when GA4 returns it.</p>\n<ul><li>Realtime data can differ from standard reports because it comes from a different GA4 endpoint.</li><li>Location is shown only when GA4 returns usable location data.</li><li>Last activity resets when the selected property changes.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_REALTIME_ACTIVITY",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_properties",
+      "parentId": "",
       "title": "Managing Properties",
-      "url": "topics/properties.html",
+      "body": "<h1>Managing Properties</h1>\n<figure><img src=\"assets/real-properties-redacted.png\" alt=\"Managing Properties\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>Properties define which websites the dashboard can query.</p>\n<ul><li>Use the numeric GA4 property ID.</li><li>Do not use the G- measurement ID or Google Cloud project number.</li><li>Disable properties you do not want in the dashboard selector.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_MANAGING_PROPERTIES",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_settings_and_google",
+      "parentId": "",
       "title": "Settings and Google Sign-in",
-      "url": "topics/settings-and-google.html",
+      "body": "<h1>Settings and Google Sign-in</h1>\n<figure><img src=\"assets/real-settings-redacted.png\" alt=\"Settings and Google Sign-in\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>Settings store dashboard defaults and Google OAuth desktop client values.</p>\n<ul><li>The OAuth client ID and secret are not your Gmail address.</li><li>The client secret is hidden by default in the UI.</li><li>The refresh token is encrypted with Windows DPAPI.</li><li>Disconnect clears the current token and saved refresh token.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_SETTINGS_AND_GOOGLE_SIGN_IN",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_long_running_dashboard",
+      "parentId": "",
       "title": "Running the Dashboard All Day",
-      "url": "topics/long-running-dashboard.html",
+      "body": "<h1>Running the Dashboard All Day</h1>\n<figure><img src=\"assets/real-summary-cards.png\" alt=\"Running the Dashboard All Day\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>The app is designed to sit open as a glanceable dashboard.</p>\n<ul><li>Leave Auto 60 sec enabled for periodic refreshes.</li><li>Use Update when you want an immediate refresh.</li><li>If authentication cannot refresh silently, open Settings and reconnect Google.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_RUNNING_THE_DASHBOARD_ALL_DAY",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_diagnostics",
+      "parentId": "",
       "title": "Diagnostics",
-      "url": "topics/diagnostics.html",
+      "body": "<h1>Diagnostics</h1>\n<figure><img src=\"assets/real-settings-redacted.png\" alt=\"Diagnostics\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>Diagnostics help explain authentication, setup, request, and parser problems.</p>\n<ul><li>Use Diagnostics when Update fails or data looks suspicious.</li><li>Check the selected property, authentication state, and last GA4 status.</li><li>Permission errors usually mean the signed-in Google account or property ID is wrong.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_DIAGNOSTICS",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_troubleshooting",
+      "parentId": "",
       "title": "Troubleshooting",
-      "url": "topics/troubleshooting.html",
+      "body": "<h1>Troubleshooting</h1>\n<figure><img src=\"assets/real-dashboard-current-redacted.png\" alt=\"Troubleshooting\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>Most problems are setup, permission, token, or date-range issues.</p>\n<ul><li>If rows are empty, try a wider date range and compare with GA4.</li><li>If downloads are zero, confirm the website emits download events.</li><li>If Google login repeats, reconnect and verify that token storage is working.</li><li>If a public repo is used, each user must provide their own OAuth client and GA4 properties.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_TROUBLESHOOTING",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     },
     {
+      "id": "topic_privacy_storage",
+      "parentId": "",
       "title": "Privacy and Storage",
-      "url": "topics/privacy-storage.html",
+      "body": "<h1>Privacy and Storage</h1>\n<figure><img src=\"assets/real-settings-redacted.png\" alt=\"Privacy and Storage\"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>\n<p>The app stores settings but does not store fetched analytics report rows.</p>\n<ul><li>Settings and property definitions are stored in SQLite.</li><li>The refresh token is encrypted for the current Windows user.</li><li>GA4 report rows are memory-only.</li><li>Do not commit real databases, OAuth secrets, tokens, or private screenshots.</li></ul>",
       "status": "Approved",
-      "owner": "Website Analytics"
+      "iconName": "auto",
+      "owner": "Website Analytics",
+      "helpId": "IDH_PRIVACY_AND_STORAGE",
+      "language": "en-US",
+      "tags": "Website Analytics; GA4; dashboard; help",
+      "conditions": "",
+      "updatedAt": "2026-07-23T00:00:00Z"
     }
   ]
 }
