@@ -1,100 +1,86 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><title>Website Analytics Help Manual</title><link rel="stylesheet" href="style.css"></head><body class="topic-body">
 <section class="topic print-topic">
 <h1>Overview</h1>
-<figure><img src="../assets/dashboard-overview-sanitized.png" alt="Overview"><figcaption>The current dashboard uses cropped, sanitized examples in this help system.</figcaption></figure>
-<p>Website Analytics presents GA4 data in a focused desktop dashboard. The main screen is organized around locations, pages/downloads, trend activity, realtime activity, and summary cards.</p>
-<ul><li>Report rows are held in memory only.</li><li>Settings are stored locally in SQLite.</li><li>The saved Google refresh token is encrypted with Windows DPAPI.</li></ul>
-
+<figure><img src="../assets/real-dashboard-current-redacted.png" alt="Overview"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>Website Analytics is a focused GA4 desktop dashboard. It retrieves selected data through GA4 APIs, keeps report rows in memory, and presents the information in practical panels instead of GA4's busier web interface.</p>
+<ul><li>Use the dashboard to answer who visited, where they came from, what they used, how users changed over the selected range, and what is happening now.</li><li>Report rows are memory-only and are discarded when the app closes.</li><li>Settings and property definitions are stored locally.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Quick Start</h1>
-<figure><img src="../assets/settings-redacted-clean.png" alt="Quick Start"><figcaption>Settings with dummy OAuth values and a hidden client secret.</figcaption></figure>
-
-
-<h2>First run</h2><ul><li>Create a Google desktop OAuth client.</li><li>Enter the client ID and secret in Settings.</li><li>Confirm the redirect URI matches your OAuth desktop client.</li><li>Connect Google once, then save settings.</li></ul><h2>Normal use</h2><ul><li>Choose a property and date range.</li><li>Leave Auto 60 sec enabled for a live wallboard-style dashboard.</li><li>Use Update for an immediate refresh.</li></ul>
+<figure><img src="../assets/real-settings-redacted.png" alt="Quick Start"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>First setup connects your own Google OAuth desktop client and your own GA4 properties.</p>
+<ul><li>Enter your OAuth desktop client ID and client secret in Settings.</li><li>Use the numeric GA4 property ID in Properties.</li><li>Click Connect Google once, complete browser sign-in, then return to the app and update.</li><li>After first sign-in, startup should reconnect silently if the encrypted refresh token is still valid.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Dashboard Tour</h1>
-<figure><img src="../assets/dashboard-overview-sanitized.png" alt="Dashboard Tour"><figcaption>The dashboard surface with sanitized example data.</figcaption></figure>
-<p>The dashboard has a compact hero section, summary cards, a location grid, a top pages/downloads chart, a users trend graph, and a realtime panel.</p>
-
-
+<figure><img src="../assets/real-dashboard-current-redacted.png" alt="Dashboard Tour"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>The dashboard is organized into real work areas: controls at the top, data lookup on the left, trend/realtime on the right.</p>
+<ul><li>The hero area holds property selection, date range, auto-update, status, Update, Settings, and Help.</li><li>The upper-left grid shows locations.</li><li>The lower-left area shows pages, downloads, and actions.</li><li>The upper-right graph shows users over the selected range.</li><li>The lower-right panel shows realtime status.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Website and Date Filters</h1>
-<figure><img src="../assets/dashboard-overview-sanitized.png" alt="Website and Date Filters"><figcaption>The hero area contains the property selector, date range selector, and auto-update checkbox.</figcaption></figure>
-
-<ul><li>Website property controls which GA4 property is queried.</li><li>Date range controls standard reports, charts, and summary cards.</li><li>All websites combines enabled properties.</li><li>Realtime values come from GA4 realtime endpoints and may not exactly match standard reports at the same instant.</li></ul>
-
+<figure><img src="../assets/real-hero-redacted.png" alt="Website and Date Filters"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>The website selector controls which GA4 property is queried. The date range controls historical report data and charts.</p>
+<ul><li>Individual properties are usually clearest for review.</li><li>All websites combines enabled properties when you want a broad view.</li><li>Auto 60 sec refreshes the dashboard while the app is running.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Users Graph</h1>
-<figure><img src="../assets/users-graph-crop-sanitized.png" alt="Users Graph"><figcaption>A cropped users graph with exact hover tooltip.</figcaption></figure>
-
-<ul><li>The graph follows the selected date range.</li><li>The axis uses whole numbers.</li><li>Hover over a bar to read the exact value.</li></ul>
-
+<figure><img src="../assets/real-users-graph.png" alt="Users Graph"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>The users graph shows the selected date range as readable bars.</p>
+<ul><li>The graph starts at zero and uses whole-number scale labels.</li><li>Hover over a bar to see the exact value.</li><li>The title includes the date span so you know what you are looking at.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Visitor Locations</h1>
-<figure><img src="../assets/locations-grid-crop-sanitized.png" alt="Visitor Locations"><figcaption>Locations grouped by country, region/state, and city.</figcaption></figure>
-
-<ul><li>The grid is sorted alphabetically for easier lookup.</li><li>United States rows use city and state where GA4 returns them.</li><li>International rows use city and country/region where available.</li><li>(not set) means GA4 did not return that dimension.</li></ul>
-
+<figure><img src="../assets/real-locations-grid-redacted.png" alt="Visitor Locations"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>The location grid groups visitors by country, region/state, and city.</p>
+<ul><li>Rows are sorted alphabetically for easier lookup.</li><li>GA4 may return (not set) when it cannot resolve a dimension.</li><li>Users and sessions are separate GA4 metrics and may differ.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Pages, Downloads, and Actions</h1>
-<figure><img src="../assets/pages-downloads-chart-sanitized.png" alt="Pages, Downloads, and Actions"><figcaption>Top pages and downloads shown as a readable chart.</figcaption></figure>
-
-<ul><li>Home page is displayed when GA4 reports the path /.</li><li>Download events appear when the website emits file_download or download-style events.</li><li>The chart follows the selected date range.</li></ul>
-
+<figure><img src="../assets/real-pages-downloads-redacted.png" alt="Pages, Downloads, and Actions"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>The pages/downloads area shows what visitors used during the selected date range.</p>
+<ul><li>Page title and path identify the content.</li><li>Action/Event distinguishes page views, downloads, scrolls, clicks, and engagement events.</li><li>Download counts depend on GA4 receiving download events from the website.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Realtime Activity</h1>
-<figure><img src="../assets/realtime-panel-crop-sanitized.png" alt="Realtime Activity"><figcaption>Realtime panel showing active visitor count and last activity.</figcaption></figure>
-
-<ul><li>Active now is the current realtime active user count.</li><li>Current location appears when GA4 returns city/country or city/state.</li><li>Last activity is reset when the selected property changes.</li></ul>
-
+<figure><img src="../assets/real-realtime-panel.png" alt="Realtime Activity"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>Realtime shows current active visitors and current/last activity information when GA4 returns it.</p>
+<ul><li>Realtime data can differ from standard reports because it comes from a different GA4 endpoint.</li><li>Location is shown only when GA4 returns usable location data.</li><li>Last activity resets when the selected property changes.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Managing Properties</h1>
-<figure><img src="../assets/properties-redacted-clean.png" alt="Managing Properties"><figcaption>Public documentation uses dummy property names and IDs.</figcaption></figure>
-
-<ul><li>Use the numeric GA4 property ID.</li><li>Do not use the Measurement ID that begins with G-.</li><li>Add more properties as you add more websites.</li></ul>
-
+<figure><img src="../assets/real-properties-redacted.png" alt="Managing Properties"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>Properties define which websites the dashboard can query.</p>
+<ul><li>Use the numeric GA4 property ID.</li><li>Do not use the G- measurement ID or Google Cloud project number.</li><li>Disable properties you do not want in the dashboard selector.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Settings and Google Sign-in</h1>
-<figure><img src="../assets/settings-redacted-clean.png" alt="Settings and Google Sign-in"><figcaption>OAuth examples are redacted and safe for public documentation.</figcaption></figure>
-
-<ul><li>The client secret is hidden by default in the UI.</li><li>The refresh token is encrypted locally.</li><li>The app silently reconnects on startup when the saved token is valid.</li><li>Google login appears only when the token is missing, revoked, or cannot be refreshed.</li></ul>
-
+<figure><img src="../assets/real-settings-redacted.png" alt="Settings and Google Sign-in"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>Settings store dashboard defaults and Google OAuth desktop client values.</p>
+<ul><li>The OAuth client ID and secret are not your Gmail address.</li><li>The client secret is hidden by default in the UI.</li><li>The refresh token is encrypted with Windows DPAPI.</li><li>Disconnect clears the current token and saved refresh token.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Running the Dashboard All Day</h1>
-<figure><img src="../assets/summary-cards-sanitized.png" alt="Running the Dashboard All Day"><figcaption>Summary cards are designed for at-a-glance monitoring.</figcaption></figure>
-
-<ul><li>Keep the app open and Auto 60 sec enabled.</li><li>Use the status bar for the latest update message.</li><li>If authentication expires, open Settings and reconnect Google.</li></ul>
-
+<figure><img src="../assets/real-summary-cards.png" alt="Running the Dashboard All Day"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>The app is designed to sit open as a glanceable dashboard.</p>
+<ul><li>Leave Auto 60 sec enabled for periodic refreshes.</li><li>Use Update when you want an immediate refresh.</li><li>If authentication cannot refresh silently, open Settings and reconnect Google.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Diagnostics</h1>
-<figure><img src="../assets/diagnostics-clean.png" alt="Diagnostics"><figcaption>Diagnostics show connection and request status without exposing secrets.</figcaption></figure>
-
-<ul><li>Use Diagnostics when Update fails.</li><li>Check authentication state and selected property.</li><li>Look at the last GA4 request message for permission or API errors.</li></ul>
-
+<figure><img src="../assets/real-settings-redacted.png" alt="Diagnostics"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>Diagnostics help explain authentication, setup, request, and parser problems.</p>
+<ul><li>Use Diagnostics when Update fails or data looks suspicious.</li><li>Check the selected property, authentication state, and last GA4 status.</li><li>Permission errors usually mean the signed-in Google account or property ID is wrong.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Troubleshooting</h1>
-<figure><img src="../assets/diagnostics-clean.png" alt="Troubleshooting"><figcaption>Diagnostics are the first stop for GA4 errors.</figcaption></figure>
-
-
-<h2>Common issues</h2><ul><li>403 permission errors usually mean the signed-in account cannot read that GA4 property.</li><li>Zero data can be normal for quiet sites or dates with no GA4 traffic.</li><li>Realtime and standard GA4 reports can update on different schedules.</li></ul><h2>What to check</h2><ul><li>OAuth client ID and secret.</li><li>GA4 property ID.</li><li>Google Analytics Data API enabled in Google Cloud.</li><li>Tester/verification status for the OAuth consent screen.</li></ul>
+<figure><img src="../assets/real-dashboard-current-redacted.png" alt="Troubleshooting"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>Most problems are setup, permission, token, or date-range issues.</p>
+<ul><li>If rows are empty, try a wider date range and compare with GA4.</li><li>If downloads are zero, confirm the website emits download events.</li><li>If Google login repeats, reconnect and verify that token storage is working.</li><li>If a public repo is used, each user must provide their own OAuth client and GA4 properties.</li></ul>
 </section>
 <section class="topic print-topic">
 <h1>Privacy and Storage</h1>
-<figure><img src="../assets/privacy-storage-clean.png" alt="Privacy and Storage"><figcaption>Storage rules shown in a brighter, more readable help style.</figcaption></figure>
-
-<ul><li>Settings and property definitions are local.</li><li>Refresh tokens are encrypted for the current Windows user.</li><li>GA4 report rows are not saved.</li><li>The repository should track the schema, not a real SQLite database.</li></ul>
-
+<figure><img src="../assets/real-settings-redacted.png" alt="Privacy and Storage"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>The app stores settings but does not store fetched analytics report rows.</p>
+<ul><li>Settings and property definitions are stored in SQLite.</li><li>The refresh token is encrypted for the current Windows user.</li><li>GA4 report rows are memory-only.</li><li>Do not commit real databases, OAuth secrets, tokens, or private screenshots.</li></ul>
 </section>
 </body></html>

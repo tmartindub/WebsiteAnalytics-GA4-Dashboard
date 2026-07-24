@@ -8,10 +8,9 @@
 <body class="topic-body">
 <main class="topic">
 <h1>Troubleshooting</h1>
-<figure><img src="../assets/diagnostics-clean.png" alt="Troubleshooting"><figcaption>Diagnostics are the first stop for GA4 errors.</figcaption></figure>
-
-
-<h2>Common issues</h2><ul><li>403 permission errors usually mean the signed-in account cannot read that GA4 property.</li><li>Zero data can be normal for quiet sites or dates with no GA4 traffic.</li><li>Realtime and standard GA4 reports can update on different schedules.</li></ul><h2>What to check</h2><ul><li>OAuth client ID and secret.</li><li>GA4 property ID.</li><li>Google Analytics Data API enabled in Google Cloud.</li><li>Tester/verification status for the OAuth consent screen.</li></ul>
+<figure><img src="../assets/real-dashboard-current-redacted.png" alt="Troubleshooting"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>Most problems are setup, permission, token, or date-range issues.</p>
+<ul><li>If rows are empty, try a wider date range and compare with GA4.</li><li>If downloads are zero, confirm the website emits download events.</li><li>If Google login repeats, reconnect and verify that token storage is working.</li><li>If a public repo is used, each user must provide their own OAuth client and GA4 properties.</li></ul>
 </main>
 </body>
 </html>

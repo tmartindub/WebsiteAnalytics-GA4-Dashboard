@@ -8,10 +8,9 @@
 <body class="topic-body">
 <main class="topic">
 <h1>Privacy and Storage</h1>
-<figure><img src="../assets/privacy-storage-clean.png" alt="Privacy and Storage"><figcaption>Storage rules shown in a brighter, more readable help style.</figcaption></figure>
-
-<ul><li>Settings and property definitions are local.</li><li>Refresh tokens are encrypted for the current Windows user.</li><li>GA4 report rows are not saved.</li><li>The repository should track the schema, not a real SQLite database.</li></ul>
-
+<figure><img src="../assets/real-settings-redacted.png" alt="Privacy and Storage"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>The app stores settings but does not store fetched analytics report rows.</p>
+<ul><li>Settings and property definitions are stored in SQLite.</li><li>The refresh token is encrypted for the current Windows user.</li><li>GA4 report rows are memory-only.</li><li>Do not commit real databases, OAuth secrets, tokens, or private screenshots.</li></ul>
 </main>
 </body>
 </html>

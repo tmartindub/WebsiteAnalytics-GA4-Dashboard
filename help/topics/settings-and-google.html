@@ -8,10 +8,9 @@
 <body class="topic-body">
 <main class="topic">
 <h1>Settings and Google Sign-in</h1>
-<figure><img src="../assets/settings-redacted-clean.png" alt="Settings and Google Sign-in"><figcaption>OAuth examples are redacted and safe for public documentation.</figcaption></figure>
-
-<ul><li>The client secret is hidden by default in the UI.</li><li>The refresh token is encrypted locally.</li><li>The app silently reconnects on startup when the saved token is valid.</li><li>Google login appears only when the token is missing, revoked, or cannot be refreshed.</li></ul>
-
+<figure><img src="../assets/real-settings-redacted.png" alt="Settings and Google Sign-in"><figcaption>Actual application screenshot, cropped and sanitized.</figcaption></figure>
+<p>Settings store dashboard defaults and Google OAuth desktop client values.</p>
+<ul><li>The OAuth client ID and secret are not your Gmail address.</li><li>The client secret is hidden by default in the UI.</li><li>The refresh token is encrypted with Windows DPAPI.</li><li>Disconnect clears the current token and saved refresh token.</li></ul>
 </main>
 </body>
 </html>

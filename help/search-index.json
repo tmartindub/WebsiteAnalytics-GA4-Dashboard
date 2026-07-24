@@ -2,71 +2,71 @@
   {
     "title": "Overview",
     "url": "topics/overview.html",
-    "text": "Overview Website Analytics presents GA4 data in a focused desktop dashboard. The main screen is organized around locations, pages/downloads, trend activity, realtime activity, and summary cards. Report rows are held in memory only. Settings are stored locally in SQLite. The saved Google refresh token is encrypted with Windows DPAPI."
+    "text": "Overview Website Analytics is a focused GA4 desktop dashboard. It retrieves selected data through GA4 APIs, keeps report rows in memory, and presents the information in practical panels instead of GA4's busier web interface. Use the dashboard to answer who visited, where they came from, what they used, how users changed over the selected range, and what is happening now. Report rows are memory-only and are discarded when the app closes. Settings and property definitions are stored locally."
   },
   {
     "title": "Quick Start",
     "url": "topics/quick-start.html",
-    "text": "Quick Start First run Create a Google desktop OAuth client. Enter the client ID and secret in Settings. Confirm the redirect URI matches your OAuth desktop client. Connect Google once, then save settings. Normal use Choose a property and date range. Leave Auto 60 sec enabled for a live wallboard-style dashboard. Use Update for an immediate refresh."
+    "text": "Quick Start First setup connects your own Google OAuth desktop client and your own GA4 properties. Enter your OAuth desktop client ID and client secret in Settings. Use the numeric GA4 property ID in Properties. Click Connect Google once, complete browser sign-in, then return to the app and update. After first sign-in, startup should reconnect silently if the encrypted refresh token is still valid."
   },
   {
     "title": "Dashboard Tour",
     "url": "topics/dashboard-tour.html",
-    "text": "Dashboard Tour The dashboard has a compact hero section, summary cards, a location grid, a top pages/downloads chart, a users trend graph, and a realtime panel."
+    "text": "Dashboard Tour The dashboard is organized into real work areas: controls at the top, data lookup on the left, trend/realtime on the right. The hero area holds property selection, date range, auto-update, status, Update, Settings, and Help. The upper-left grid shows locations. The lower-left area shows pages, downloads, and actions. The upper-right graph shows users over the selected range. The lower-right panel shows realtime status."
   },
   {
     "title": "Website and Date Filters",
     "url": "topics/website-date-filters.html",
-    "text": "Website and Date Filters Website property controls which GA4 property is queried. Date range controls standard reports, charts, and summary cards. All websites combines enabled properties. Realtime values come from GA4 realtime endpoints and may not exactly match standard reports at the same instant."
+    "text": "Website and Date Filters The website selector controls which GA4 property is queried. The date range controls historical report data and charts. Individual properties are usually clearest for review. All websites combines enabled properties when you want a broad view. Auto 60 sec refreshes the dashboard while the app is running."
   },
   {
     "title": "Users Graph",
     "url": "topics/trend-graph.html",
-    "text": "Users Graph The graph follows the selected date range. The axis uses whole numbers. Hover over a bar to read the exact value."
+    "text": "Users Graph The users graph shows the selected date range as readable bars. The graph starts at zero and uses whole-number scale labels. Hover over a bar to see the exact value. The title includes the date span so you know what you are looking at."
   },
   {
     "title": "Visitor Locations",
     "url": "topics/locations.html",
-    "text": "Visitor Locations The grid is sorted alphabetically for easier lookup. United States rows use city and state where GA4 returns them. International rows use city and country/region where available. (not set) means GA4 did not return that dimension."
+    "text": "Visitor Locations The location grid groups visitors by country, region/state, and city. Rows are sorted alphabetically for easier lookup. GA4 may return (not set) when it cannot resolve a dimension. Users and sessions are separate GA4 metrics and may differ."
   },
   {
     "title": "Pages, Downloads, and Actions",
     "url": "topics/pages-actions.html",
-    "text": "Pages, Downloads, and Actions Home page is displayed when GA4 reports the path /. Download events appear when the website emits file_download or download-style events. The chart follows the selected date range."
+    "text": "Pages, Downloads, and Actions The pages/downloads area shows what visitors used during the selected date range. Page title and path identify the content. Action/Event distinguishes page views, downloads, scrolls, clicks, and engagement events. Download counts depend on GA4 receiving download events from the website."
   },
   {
     "title": "Realtime Activity",
     "url": "topics/realtime.html",
-    "text": "Realtime Activity Active now is the current realtime active user count. Current location appears when GA4 returns city/country or city/state. Last activity is reset when the selected property changes."
+    "text": "Realtime Activity Realtime shows current active visitors and current/last activity information when GA4 returns it. Realtime data can differ from standard reports because it comes from a different GA4 endpoint. Location is shown only when GA4 returns usable location data. Last activity resets when the selected property changes."
   },
   {
     "title": "Managing Properties",
     "url": "topics/properties.html",
-    "text": "Managing Properties Use the numeric GA4 property ID. Do not use the Measurement ID that begins with G-. Add more properties as you add more websites."
+    "text": "Managing Properties Properties define which websites the dashboard can query. Use the numeric GA4 property ID. Do not use the G- measurement ID or Google Cloud project number. Disable properties you do not want in the dashboard selector."
   },
   {
     "title": "Settings and Google Sign-in",
     "url": "topics/settings-and-google.html",
-    "text": "Settings and Google Sign-in The client secret is hidden by default in the UI. The refresh token is encrypted locally. The app silently reconnects on startup when the saved token is valid. Google login appears only when the token is missing, revoked, or cannot be refreshed."
+    "text": "Settings and Google Sign-in Settings store dashboard defaults and Google OAuth desktop client values. The OAuth client ID and secret are not your Gmail address. The client secret is hidden by default in the UI. The refresh token is encrypted with Windows DPAPI. Disconnect clears the current token and saved refresh token."
   },
   {
     "title": "Running the Dashboard All Day",
     "url": "topics/long-running-dashboard.html",
-    "text": "Running the Dashboard All Day Keep the app open and Auto 60 sec enabled. Use the status bar for the latest update message. If authentication expires, open Settings and reconnect Google."
+    "text": "Running the Dashboard All Day The app is designed to sit open as a glanceable dashboard. Leave Auto 60 sec enabled for periodic refreshes. Use Update when you want an immediate refresh. If authentication cannot refresh silently, open Settings and reconnect Google."
   },
   {
     "title": "Diagnostics",
     "url": "topics/diagnostics.html",
-    "text": "Diagnostics Use Diagnostics when Update fails. Check authentication state and selected property. Look at the last GA4 request message for permission or API errors."
+    "text": "Diagnostics Diagnostics help explain authentication, setup, request, and parser problems. Use Diagnostics when Update fails or data looks suspicious. Check the selected property, authentication state, and last GA4 status. Permission errors usually mean the signed-in Google account or property ID is wrong."
   },
   {
     "title": "Troubleshooting",
     "url": "topics/troubleshooting.html",
-    "text": "Troubleshooting Common issues 403 permission errors usually mean the signed-in account cannot read that GA4 property. Zero data can be normal for quiet sites or dates with no GA4 traffic. Realtime and standard GA4 reports can update on different schedules. What to check OAuth client ID and secret. GA4 property ID. Google Analytics Data API enabled in Google Cloud. Tester/verification status for the OAuth consent screen."
+    "text": "Troubleshooting Most problems are setup, permission, token, or date-range issues. If rows are empty, try a wider date range and compare with GA4. If downloads are zero, confirm the website emits download events. If Google login repeats, reconnect and verify that token storage is working. If a public repo is used, each user must provide their own OAuth client and GA4 properties."
   },
   {
     "title": "Privacy and Storage",
     "url": "topics/privacy-storage.html",
-    "text": "Privacy and Storage Settings and property definitions are local. Refresh tokens are encrypted for the current Windows user. GA4 report rows are not saved. The repository should track the schema, not a real SQLite database."
+    "text": "Privacy and Storage The app stores settings but does not store fetched analytics report rows. Settings and property definitions are stored in SQLite. The refresh token is encrypted for the current Windows user. GA4 report rows are memory-only. Do not commit real databases, OAuth secrets, tokens, or private screenshots."
   }
 ]
