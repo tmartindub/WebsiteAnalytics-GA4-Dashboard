@@ -2574,7 +2574,7 @@ object frmMainDashboard: TfrmMainDashboard
                       Fill.Color = xFF12243A
                       Margins.Right = 8.000000000000000000
                       Margins.Bottom = 8.000000000000000000
-                      Size.Width = 116.000000000000000000
+                      Size.Width = 136.000000000000000000
                       Size.Height = 104.000000000000000000
                       Size.PlatformDefault = False
                       Stroke.Color = xFF2B4F76
@@ -2584,7 +2584,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 12.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 36.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 13.000000000000000000
@@ -2595,7 +2595,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 52.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 34.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 26.000000000000000000
@@ -2608,7 +2608,7 @@ object frmMainDashboard: TfrmMainDashboard
                       Fill.Color = xFF12243A
                       Margins.Right = 8.000000000000000000
                       Margins.Bottom = 8.000000000000000000
-                      Size.Width = 116.000000000000000000
+                      Size.Width = 136.000000000000000000
                       Size.Height = 104.000000000000000000
                       Size.PlatformDefault = False
                       Stroke.Color = xFF2B4F76
@@ -2618,7 +2618,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 12.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 36.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 13.000000000000000000
@@ -2629,7 +2629,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 58.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 34.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 26.000000000000000000
@@ -2642,7 +2642,7 @@ object frmMainDashboard: TfrmMainDashboard
                       Fill.Color = xFF12243A
                       Margins.Right = 8.000000000000000000
                       Margins.Bottom = 8.000000000000000000
-                      Size.Width = 116.000000000000000000
+                      Size.Width = 136.000000000000000000
                       Size.Height = 104.000000000000000000
                       Size.PlatformDefault = False
                       Stroke.Color = xFF2B4F76
@@ -2652,7 +2652,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 12.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 22.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 13.000000000000000000
@@ -2663,7 +2663,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 52.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 34.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 26.000000000000000000
@@ -2676,7 +2676,7 @@ object frmMainDashboard: TfrmMainDashboard
                       Fill.Color = xFF12243A
                       Margins.Right = 8.000000000000000000
                       Margins.Bottom = 8.000000000000000000
-                      Size.Width = 116.000000000000000000
+                      Size.Width = 136.000000000000000000
                       Size.Height = 104.000000000000000000
                       Size.PlatformDefault = False
                       Stroke.Color = xFF2B4F76
@@ -2686,7 +2686,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 12.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 22.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 13.000000000000000000
@@ -2697,7 +2697,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 58.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 34.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 26.000000000000000000
@@ -2710,7 +2710,7 @@ object frmMainDashboard: TfrmMainDashboard
                       Fill.Color = xFF12243A
                       Margins.Right = 8.000000000000000000
                       Margins.Bottom = 8.000000000000000000
-                      Size.Width = 116.000000000000000000
+                      Size.Width = 136.000000000000000000
                       Size.Height = 104.000000000000000000
                       Size.PlatformDefault = False
                       Stroke.Color = xFF2B4F76
@@ -2720,7 +2720,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 12.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 22.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 13.000000000000000000
@@ -2731,7 +2731,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 52.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 34.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 26.000000000000000000
@@ -2744,7 +2744,7 @@ object frmMainDashboard: TfrmMainDashboard
                       Fill.Color = xFF12243A
                       Margins.Right = 8.000000000000000000
                       Margins.Bottom = 8.000000000000000000
-                      Size.Width = 116.000000000000000000
+                      Size.Width = 136.000000000000000000
                       Size.Height = 104.000000000000000000
                       Size.PlatformDefault = False
                       Stroke.Color = xFF2B4F76
@@ -2754,7 +2754,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 12.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 22.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 13.000000000000000000
@@ -2765,7 +2765,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 46.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 48.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 16.000000000000000000
@@ -2778,7 +2778,7 @@ object frmMainDashboard: TfrmMainDashboard
                       Fill.Color = xFF12243A
                       Margins.Right = 8.000000000000000000
                       Margins.Bottom = 8.000000000000000000
-                      Size.Width = 116.000000000000000000
+                      Size.Width = 136.000000000000000000
                       Size.Height = 104.000000000000000000
                       Size.PlatformDefault = False
                       Stroke.Color = xFF2B4F76
@@ -2788,7 +2788,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 12.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 22.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 13.000000000000000000
@@ -2799,7 +2799,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 46.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 48.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 16.000000000000000000
@@ -2812,7 +2812,7 @@ object frmMainDashboard: TfrmMainDashboard
                       Fill.Color = xFF12243A
                       Margins.Right = 8.000000000000000000
                       Margins.Bottom = 8.000000000000000000
-                      Size.Width = 116.000000000000000000
+                      Size.Width = 136.000000000000000000
                       Size.Height = 104.000000000000000000
                       Size.PlatformDefault = False
                       Stroke.Color = xFF2B4F76
@@ -2822,7 +2822,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 12.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 22.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 13.000000000000000000
@@ -2833,7 +2833,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 58.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 34.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 26.000000000000000000
@@ -2846,7 +2846,7 @@ object frmMainDashboard: TfrmMainDashboard
                       Fill.Color = xFF12243A
                       Margins.Right = 8.000000000000000000
                       Margins.Bottom = 8.000000000000000000
-                      Size.Width = 116.000000000000000000
+                      Size.Width = 136.000000000000000000
                       Size.Height = 104.000000000000000000
                       Size.PlatformDefault = False
                       Stroke.Color = xFF2B4F76
@@ -2856,7 +2856,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 12.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 22.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 13.000000000000000000
@@ -2867,7 +2867,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 52.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 34.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 26.000000000000000000
@@ -2880,7 +2880,7 @@ object frmMainDashboard: TfrmMainDashboard
                       Fill.Color = xFF12243A
                       Margins.Right = 8.000000000000000000
                       Margins.Bottom = 8.000000000000000000
-                      Size.Width = 116.000000000000000000
+                      Size.Width = 136.000000000000000000
                       Size.Height = 104.000000000000000000
                       Size.PlatformDefault = False
                       Stroke.Color = xFF2B4F76
@@ -2890,7 +2890,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 12.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 22.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 13.000000000000000000
@@ -2901,7 +2901,7 @@ object frmMainDashboard: TfrmMainDashboard
                         StyledSettings = []
                         Position.X = 12.000000000000000000
                         Position.Y = 52.000000000000000000
-                        Size.Width = 92.000000000000000000
+                        Size.Width = 112.000000000000000000
                         Size.Height = 34.000000000000000000
                         Size.PlatformDefault = False
                         TextSettings.Font.Size = 26.000000000000000000
